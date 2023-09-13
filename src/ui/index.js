@@ -1,4 +1,5 @@
 import ButtonGroup from "./ButtonGroup";
+import Button from "./Button";
 import ButtonIcon from "./ButtonIcon";
 import ButtonText from "./ButtonText";
 import Checkbox from "./Checkbox";
@@ -14,6 +15,7 @@ import SpinnerMini from "./SpinnerMini";
 import TableOperations from "./TableOperations";
 import Tag from "./Tag";
 import Textarea from "./Textarea";
+import Input from "./Input";
 
 export {
   ButtonGroup,
@@ -32,4 +34,6 @@ export {
   TableOperations,
   Tag,
   Textarea,
+  Button,
+  Input,
 };
