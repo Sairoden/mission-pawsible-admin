@@ -17,37 +17,47 @@ import {
   Login,
   Settings,
   Users,
+  PageNotFound,
 } from "./pages";
+
+// UI Components
+import { AppLayout } from "./ui";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
-      element: <Navigate replace to="/dashboard" />,
-    },
-    {
-      path: "/dashboard",
-      element: <Dashboard />,
-    },
-    {
-      path: "/bookings",
-      element: <Bookings />,
-    },
-    {
-      path: "/cabins",
-      element: <Cabins />,
-    },
-    {
-      path: "/users",
-      element: <Users />,
-    },
-    {
-      path: "/settings",
-      element: <Settings />,
-    },
-    {
-      path: "/account",
-      element: <Account />,
+      element: <AppLayout />,
+      errorElement: <PageNotFound />,
+      children: [
+        {
+          path: "/",
+          element: <Navigate replace to="/dashboard" />,
+        },
+        {
+          path: "/dashboard",
+          element: <Dashboard />,
+        },
+        {
+          path: "/bookings",
+          element: <Bookings />,
+        },
+        {
+          path: "/cabins",
+          element: <Cabins />,
+        },
+        {
+          path: "/users",
+          element: <Users />,
+        },
+        {
+          path: "/settings",
+          element: <Settings />,
+        },
+        {
+          path: "/account",
+          element: <Account />,
+        },
+      ],
     },
     {
       path: "/login",
@@ -58,9 +68,11 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
     </>
   );
 }
 
 export default App;
+
+// 9

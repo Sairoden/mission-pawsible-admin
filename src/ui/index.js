@@ -18,6 +18,9 @@ import Textarea from "./Textarea";
 import Input from "./Input";
 import Heading from "./Heading";
 import Row from "./Row";
+import AppLayout from "./AppLayout";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 export {
   ButtonGroup,
@@ -40,4 +43,7 @@ export {
   Input,
   Heading,
   Row,
+  AppLayout,
+  Sidebar,
+  Header,
 };
