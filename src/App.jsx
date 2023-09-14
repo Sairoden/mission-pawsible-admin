@@ -1,35 +1,66 @@
+// React & Libraries
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate,
+} from "react-router-dom";
+
 // Styles
-import styled from "styled-components";
 import GlobalStyles from "./styles/GlobalStyles";
 
-// UI Components
-// import { Button } from "./ui";
-import Button from "./ui/Button";
-import Input from "./ui/Input";
+// Pages
+import {
+  Dashboard,
+  Account,
+  Bookings,
+  Cabins,
+  Login,
+  Settings,
+  Users,
+} from "./pages";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Navigate replace to="/dashboard" />,
+    },
+    {
+      path: "/dashboard",
+      element: <Dashboard />,
+    },
+    {
+      path: "/bookings",
+      element: <Bookings />,
+    },
+    {
+      path: "/cabins",
+      element: <Cabins />,
+    },
+    {
+      path: "/users",
+      element: <Users />,
+    },
+    {
+      path: "/settings",
+      element: <Settings />,
+    },
+    {
+      path: "/account",
+      element: <Account />,
+    },
+    {
+      path: "/login",
+      element: <Login />,
+    },
+  ]);
+
   return (
     <>
       <GlobalStyles />
-      <StyledApp>
-        <H1>hello world</H1>
-
-        <Button onClick={() => alert("Check in")}>Check in</Button>
-        <Button onClick={() => alert("Check out")}>Check out</Button>
-        <Input type="number" placeholder="Number of guests" />
-      </StyledApp>
+      <RouterProvider router={router} />;
     </>
   );
 }
-
-const StyledApp = styled.div`
-  background-color: orangered;
-  padding: 20px;
-`;
-
-const H1 = styled.h1`
-  font-size: 100px;
-  font-weight: 600;
-`;
 
 export default App;

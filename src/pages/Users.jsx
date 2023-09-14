@@ -1,8 +1,8 @@
 // UI Components
 import { Heading } from "../ui";
 
-function NewUsers() {
+function Users() {
   return <Heading as="h1">Create a new user</Heading>;
 }
 
-export default NewUsers;
+export default Users;

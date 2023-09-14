@@ -16,6 +16,8 @@ import TableOperations from "./TableOperations";
 import Tag from "./Tag";
 import Textarea from "./Textarea";
 import Input from "./Input";
+import Heading from "./Heading";
+import Row from "./Row";
 
 export {
   ButtonGroup,
@@ -36,4 +38,6 @@ export {
   Textarea,
   Button,
   Input,
+  Heading,
+  Row,
 };
