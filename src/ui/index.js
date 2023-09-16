@@ -21,6 +21,7 @@ import Row from "./Row";
 import AppLayout from "./AppLayout";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import MainNav from "./MainNav";
 
 export {
   ButtonGroup,
@@ -46,4 +47,5 @@ export {
   AppLayout,
   Sidebar,
   Header,
+  MainNav,
 };
