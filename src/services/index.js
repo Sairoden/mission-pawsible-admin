@@ -8,7 +8,7 @@ import {
 } from "./apiBookings";
 import { getSettings, updateSetting } from "./apiSettings";
 import supabase from "./supabase";
-import { getCabins } from "./apiCabins";
+import { getCabins, deleteCabin } from "./apiCabins";
 
 export {
   getBooking,
