@@ -13,6 +13,8 @@ import BookingTableOperations from "./bookings/BookingTableOperations";
 
 // Cabins
 import CreateCabinForm from "./cabins/CreateCabinForm";
+import CabinTable from "./cabins/CabinTable";
+import CabinRow from "./cabins/CabinRow";
 
 // Check-in-out
 import CheckinBooking from "./check-in-out/CheckinBooking";
@@ -53,4 +55,6 @@ export {
   GuestList,
   GuestListItem,
   UpdateSettingsForm,
+  CabinTable,
+  CabinRow,
 };

@@ -5,6 +5,9 @@ import {
   Navigate,
 } from "react-router-dom";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
 // Styles
 import GlobalStyles from "./styles/GlobalStyles";
 
@@ -22,6 +25,15 @@ import {
 
 // UI Components
 import { AppLayout } from "./ui";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      // staleTime: 60 * 1000,
+      staleTime: 0,
+    },
+  },
+});
 
 function App() {
   const router = createBrowserRouter([
@@ -66,14 +78,15 @@ function App() {
   ]);
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <GlobalStyles />
       <RouterProvider router={router} />
-    </>
+    </QueryClientProvider>
   );
 }
 
 export default App;
 
 // 0qyZ62KzAlcFfeMx
-// 7
+// 5
