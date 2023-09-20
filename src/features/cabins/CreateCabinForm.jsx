@@ -1,3 +1,6 @@
+// React & Libraries
+import { useForm } from "react-hook-form";
+
 // Styles
 import styled from "styled-components";
 
@@ -5,31 +8,47 @@ import styled from "styled-components";
 import { Input, Form, Button, FileInput, Textarea } from "../../ui";
 
 function CreateCabinForm() {
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = data => {
+    console.log(data);
+  };
+
   return (
-    <Form>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow>
         <Label htmlFor="name">Cabin name</Label>
-        <Input type="text" id="name" />
+        <Input type="text" id="name" {...register("name")} />
       </FormRow>
 
       <FormRow>
         <Label htmlFor="maxCapacity">Maximum Capacity</Label>
-        <Input type="number" id="maxCapacity" />
+        <Input type="number" id="maxCapacity" {...register("maxCapacity")} />
       </FormRow>
 
       <FormRow>
         <Label htmlFor="discount">Discount</Label>
-        <Input type="number" id="discount" defaultValue={0} />
+        <Input
+          type="number"
+          id="discount"
+          defaultValue={0}
+          {...register("discount")}
+        />
       </FormRow>
 
       <FormRow>
-        <Label htmlFor="descriptione">Description for website</Label>
-        <Input type="text" id="descriptione" defaultValue="" />
+        <Label htmlFor="description">Description for website</Label>
+        <Input
+          type="text"
+          id="description"
+          defaultValue=""
+          {...register("description")}
+        />
       </FormRow>
 
       <FormRow>
         <Label htmlFor="image">Cabin photo</Label>
-        <Input accept="image/*" id="image" />
+        <Input accept="image/*" id="image" {...register("image")} />
       </FormRow>
 
       <FormRow>
