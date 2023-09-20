@@ -1,5 +1,6 @@
 // React & Libraries
 import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 // Styles
 import styled from "styled-components";
@@ -7,12 +8,26 @@ import styled from "styled-components";
 // UI Components
 import { Input, Form, Button, FileInput, Textarea } from "../../ui";
 
-function CreateCabinForm() {
-  const { register, handleSubmit } = useForm();
+// Services
+import { createCabin } from "../../services/apiCabins";
+import toast from "react-hot-toast";
 
-  const onSubmit = data => {
-    console.log(data);
-  };
+function CreateCabinForm() {
+  const { register, handleSubmit, reset } = useForm();
+
+  const queryClient = useQueryClient();
+
+  const { mutate, isLoading: isCreating } = useMutation({
+    mutationFn: createCabin,
+    onSuccess: () => {
+      toast.success("New cabin successfully created");
+      queryClient.invalidateQueries({ queryKey: ["cabins"] });
+      reset();
+    },
+    onErorr: err => toast.error(err.message),
+  });
+
+  const onSubmit = data => mutate(data);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -24,6 +39,11 @@ function CreateCabinForm() {
       <FormRow>
         <Label htmlFor="maxCapacity">Maximum Capacity</Label>
         <Input type="number" id="maxCapacity" {...register("maxCapacity")} />
+      </FormRow>
+
+      <FormRow>
+        <Label htmlFor="regularPrice">Regular price</Label>
+        <Input type="number" id="regularPrice" {...register("regularPrice")} />
       </FormRow>
 
       <FormRow>
@@ -52,11 +72,11 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow>
-        <Button variation="secondary" type="reset">
+        <Button variation="secondary" type="reset" disabled={isCreating}>
           Cancel
         </Button>
 
-        <Button>Edit cabin</Button>
+        <Button>Add cabin</Button>
       </FormRow>
     </Form>
   );
