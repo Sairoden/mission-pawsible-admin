@@ -22,6 +22,7 @@ import AppLayout from "./AppLayout";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import MainNav from "./MainNav";
+import FormRow from "./FormRow";
 
 export {
   ButtonGroup,
@@ -48,4 +49,5 @@ export {
   Sidebar,
   Header,
   MainNav,
+  FormRow,
 };
