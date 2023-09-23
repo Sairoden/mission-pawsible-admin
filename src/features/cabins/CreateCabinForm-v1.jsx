@@ -6,21 +6,17 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Input, Form, Button, FileInput, Textarea, FormRow } from "../../ui";
 
 // Services
-import { createEditCabin } from "../../services";
+import { createCabin } from "../../services/apiCabins";
 import toast from "react-hot-toast";
 
-function CreateCabinForm({ cabinToEdit = {} }) {
-  const { id: editId, ...editValues } = cabinToEdit;
-
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
-    defaultValues: editId ? editValues : {},
-  });
+function CreateCabinForm({ cabin }) {
+  const { register, handleSubmit, reset, getValues, formState } = useForm();
   const { errors } = formState;
 
   const queryClient = useQueryClient();
 
-  const { mutate: createCabin, isLoading: isCreating } = useMutation({
-    mutationFn: createEditCabin,
+  const { mutate, isLoading: isCreating } = useMutation({
+    mutationFn: createCabin,
     onSuccess: () => {
       toast.success("New cabin successfully created");
       queryClient.invalidateQueries({ queryKey: ["cabins"] });
@@ -29,32 +25,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
     onErorr: err => toast.error(err.message),
   });
 
-  const { mutate: editCabin, isLoading: isEditing } = useMutation({
-    mutationFn: ({ newCabinData, id }) => createEditCabin(newCabinData, id),
-    onSuccess: () => {
-      toast.success("Cabin successfully edited");
-      queryClient.invalidateQueries({ queryKey: ["cabins"] });
-      reset();
-    },
-    onErorr: err => toast.error(err.message),
-  });
-
   const onSubmit = data => {
-    const image = typeof data.image === "string" ? data.image : data.image[0];
-
-    if (editId)
-      editCabin({
-        newCabinData: {
-          ...data,
-          image,
-        },
-        id: editId,
-      });
-    else createCabin({ ...data, image });
+    // mutate({ ...data, image: data.image[0] });
+    console.log(data);
   };
-
-  const isWorking = isCreating || isEditing;
-
   const onError = err => console.log(err);
 
   return (
@@ -63,7 +37,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         <Input
           type="text"
           id="name"
-          disabled={isWorking}
+          disabled={isCreating}
           {...register("name", {
             required: "This field is required",
           })}
@@ -74,7 +48,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         <Input
           type="number"
           id="maxCapacity"
-          disabled={isWorking}
+          disabled={isCreating}
           {...register("maxCapacity", {
             required: "This field is required",
             min: { value: 1, message: "Capacity should be at least 1" },
@@ -86,7 +60,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
         <Input
           type="number"
           id="regularPrice"
-          disabled={isWorking}
+          disabled={isCreating}
           {...register("regularPrice", {
             required: "This field is required",
             min: { value: 1, message: "Capacity should be at least 1" },
@@ -99,7 +73,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           type="number"
           id="discount"
           defaultValue={0}
-          disabled={isWorking}
+          disabled={isCreating}
           {...register("discount", {
             required: "This field is required",
             validate: value =>
@@ -117,7 +91,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           type="text"
           id="description"
           defaultValue=""
-          disabled={isWorking}
+          disabled={isCreating}
           {...register("description", {
             required: "This field is required",
           })}
@@ -129,19 +103,17 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           accept="image/*"
           id="image"
           {...register("image", {
-            required: editId ? false : "This field is required",
+            required: "This field is required",
           })}
         />
       </FormRow>
 
       <FormRow>
-        <Button variation="secondary" type="reset" disabled={isWorking}>
+        <Button variation="secondary" type="reset" disabled={isCreating}>
           Cancel
         </Button>
 
-        <Button disabled={isWorking}>
-          {editId ? "Edit cabin" : "Create new cabin"}
-        </Button>
+        <Button>Add cabin</Button>
       </FormRow>
     </Form>
   );
