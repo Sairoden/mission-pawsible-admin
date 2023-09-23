@@ -2,9 +2,6 @@
 import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-// Styles
-import styled from "styled-components";
-
 // UI Components
 import { Input, Form, Button, FileInput, Textarea, FormRow } from "../../ui";
 
@@ -28,7 +25,10 @@ function CreateCabinForm() {
     onErorr: err => toast.error(err.message),
   });
 
-  const onSubmit = data => mutate(data);
+  const onSubmit = data => {
+    mutate({...data, image: data.image[0]});
+    console.log(data);
+  };
   const onError = err => console.log(err);
 
   return (
@@ -98,8 +98,14 @@ function CreateCabinForm() {
         />
       </FormRow>
 
-      <FormRow label="Cabin photo" error={errors?.image?.message}>
-        <Input accept="image/*" id="image" />
+      <FormRow label="Cabin photo">
+        <FileInput
+          accept="image/*"
+          id="image"
+          {...register("image", {
+            required: "This field is required",
+          })}
+        />
       </FormRow>
 
       <FormRow>
