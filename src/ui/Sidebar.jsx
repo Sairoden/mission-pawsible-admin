@@ -1,6 +1,7 @@
 // Styles
 import styled from "styled-components";
 
+// UI Components
 import { Logo, MainNav } from "./index";
 
 function Sidebar() {
