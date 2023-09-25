@@ -1,18 +1,11 @@
-// React & Libraries
-import { useState } from "react";
-
-// UI Components
-import { Heading, Row, Button } from "../ui";
-
 // Features Components
 import CabinTable from "../features/cabins/CabinTable";
-import CreateCabinForm from "../features/cabins/CreateCabinForm";
+import AddCabin from "../features/cabins/AddCabin";
+
+// UI Components
+import { Heading, Row } from "../ui";
 
 function Cabins() {
-  const [showForm, setShowForm] = useState(false);
-
-  const handleAdd = () => setShowForm(!showForm);
-
   return (
     <>
       <Row type="horizontal">
@@ -22,8 +15,7 @@ function Cabins() {
 
       <Row>
         <CabinTable />
-        <Button onClick={handleAdd}>Add new Cabin</Button>
-        {showForm && <CreateCabinForm />}
+        <AddCabin />
       </Row>
     </>
   );

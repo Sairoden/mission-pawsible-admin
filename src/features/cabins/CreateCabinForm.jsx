@@ -8,7 +8,7 @@ import { Input, Form, Button, FileInput, Textarea, FormRow } from "../../ui";
 import { useCreateCabin } from "./useCreateCabin";
 import { useEditCabin } from "./useEditCabin";
 
-function CreateCabinForm({ cabinToEdit = {} }) {
+function CreateCabinForm({ cabinToEdit = {}, handleCloseModal }) {
   const { createCabin, isCreating } = useCreateCabin();
   const { editCabin, isEditing } = useEditCabin();
   const isWorking = isCreating || isEditing;
@@ -41,6 +41,7 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           onSuccess: data => {
             console.log(data);
             reset();
+            handleCloseModal?.();
           },
         }
       );
@@ -49,7 +50,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const onError = err => console.log(err);
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit, onError)}>
+    <Form
+      onSubmit={handleSubmit(onSubmit, onError)}
+      type={handleCloseModal ? "modal" : "regular"}
+    >
       <FormRow label="Cabin name" error={errors?.name?.message}>
         <Input
           type="text"
@@ -126,7 +130,12 @@ function CreateCabinForm({ cabinToEdit = {} }) {
       </FormRow>
 
       <FormRow>
-        <Button variation="secondary" type="reset" disabled={isWorking}>
+        <Button
+          onClick={() => handleCloseModal?.()}
+          variation="secondary"
+          type="reset"
+          disabled={isWorking}
+        >
           Cancel
         </Button>
 

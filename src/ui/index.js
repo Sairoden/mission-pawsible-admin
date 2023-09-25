@@ -23,6 +23,7 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import MainNav from "./MainNav";
 import FormRow from "./FormRow";
+import Modal from "./Modal";
 
 export {
   ButtonGroup,
@@ -50,4 +51,5 @@ export {
   Header,
   MainNav,
   FormRow,
+  Modal,
 };
