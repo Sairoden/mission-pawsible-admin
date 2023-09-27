@@ -4,7 +4,12 @@ import styled from "styled-components";
 // UI Components
 import { Button, Heading } from "./index";
 
-function ConfirmDelete({ resourceName, handleConfirm, disabled }) {
+function ConfirmDelete({
+  resourceName,
+  handleConfirm,
+  disabled,
+  handleCloseModal,
+}) {
   return (
     <StyledConfirmDelete>
       <Heading as="h3">Delete {resourceName}</Heading>
@@ -15,10 +20,14 @@ function ConfirmDelete({ resourceName, handleConfirm, disabled }) {
       </p>
 
       <div>
-        <Button variation="secondary" disabled={disabled}>
+        <Button
+          variation="secondary"
+          disabled={disabled}
+          onClick={handleCloseModal}
+        >
           Cancel
         </Button>
-        <Button variation="danger" disabled={disabled}>
+        <Button variation="danger" disabled={disabled} onClick={handleConfirm}>
           Delete
         </Button>
       </div>

@@ -32,7 +32,12 @@ function CreateCabinForm({ cabinToEdit = {}, handleCloseModal }) {
           },
           id: editId,
         },
-        { onSuccess: () => reset() }
+        {
+          onSuccess: () => {
+            reset();
+            handleCloseModal?.();
+          },
+        }
       );
     else
       createCabin(
