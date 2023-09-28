@@ -25,6 +25,7 @@ import MainNav from "./MainNav";
 import FormRow from "./FormRow";
 import Modal from "./Modal";
 import Table from "./Table";
+import Menus from "./Menus";
 
 export {
   ButtonGroup,
@@ -54,4 +55,5 @@ export {
   FormRow,
   Modal,
   Table,
+  Menus,
 };

@@ -4,6 +4,42 @@ import { createContext, useContext } from "react";
 // Styles
 import styled from "styled-components";
 
+const TableContext = createContext();
+
+function Table({ columns, children }) {
+  return (
+    <TableContext.Provider value={{ columns }}>
+      <StyledTable role="table">{children}</StyledTable>
+    </TableContext.Provider>
+  );
+}
+
+function Header({ children }) {
+  const { columns } = useContext(TableContext);
+
+  return (
+    <StyledHeader role="row" columns={columns} as="header">
+      {children}
+    </StyledHeader>
+  );
+}
+
+function Row({ children }) {
+  const { columns } = useContext(TableContext);
+
+  return (
+    <StyledRow role="row" columns={columns}>
+      {children}
+    </StyledRow>
+  );
+}
+
+function Body({ render, data }) {
+  if (!data.length) return <Empty>No data to show at the moment</Empty>;
+
+  return <StyledBody>{data.map(render)}</StyledBody>;
+}
+
 const StyledTable = styled.div`
   border: 1px solid var(--color-grey-200);
 
@@ -62,38 +98,6 @@ const Empty = styled.p`
   text-align: center;
   margin: 2.4rem;
 `;
-
-const TableContext = createContext();
-
-function Table({ columns, children }) {
-  return (
-    <TableContext.Provider value={{ columns }}>
-      <StyledTable role="table">{children}</StyledTable>
-    </TableContext.Provider>
-  );
-}
-
-function Header({ children }) {
-  const { columns } = useContext(TableContext);
-
-  return (
-    <StyledHeader role="row" columns={columns} as="header">
-      {children}
-    </StyledHeader>
-  );
-}
-
-function Row({ children }) {
-  const { columns } = useContext(TableContext);
-
-  return (
-    <StyledRow role="row" columns={columns}>
-      {children}
-    </StyledRow>
-  );
-}
-
-function Body({ children }) {}
 
 Table.Header = Header;
 Table.Row = Row;
