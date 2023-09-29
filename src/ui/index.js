@@ -26,6 +26,7 @@ import FormRow from "./FormRow";
 import Modal from "./Modal";
 import Table from "./Table";
 import Menus from "./Menus";
+import Filter from "./Filter";
 
 export {
   ButtonGroup,
@@ -56,4 +57,5 @@ export {
   Modal,
   Table,
   Menus,
+  Filter,
 };

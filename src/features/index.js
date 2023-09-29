@@ -16,6 +16,7 @@ import CreateCabinForm from "./cabins/CreateCabinForm";
 import CabinTable from "./cabins/CabinTable";
 import CabinRow from "./cabins/CabinRow";
 import AddCabin from "./cabins/AddCabin";
+import CabinTableOperations from "./cabins/CabinTableOperations";
 
 // Check-in-out
 import CheckinBooking from "./check-in-out/CheckinBooking";
@@ -59,4 +60,5 @@ export {
   CabinTable,
   CabinRow,
   AddCabin,
+  CabinTableOperations,
 };
