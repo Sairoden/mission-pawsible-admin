@@ -1,8 +1,8 @@
 // Authentication
-import LoginForm from "./authentication/LoginForm";
-import SignupForm from "./authentication/SignupForm";
-import UpdatePasswordForm from "./authentication/UpdatePasswordForm";
-import UpdateUserDataForm from "./authentication/UpdateUserDataForm";
+// import LoginForm from "./authentication/LoginForm";
+// import SignupForm from "./authentication/SignupForm";
+// import UpdatePasswordForm from "./authentication/UpdatePasswordForm";
+// import UpdateUserDataForm from "./authentication/UpdateUserDataForm";
 
 // Bookings
 import BookingDataBox from "./bookings/BookingDataBox";
@@ -18,6 +18,7 @@ import CabinRow from "./cabins/CabinRow";
 import AddCabin from "./cabins/AddCabin";
 import CabinTableOperations from "./cabins/CabinTableOperations";
 
+
 // Check-in-out
 import CheckinBooking from "./check-in-out/CheckinBooking";
 import CheckoutButton from "./check-in-out/CheckoutButton";
@@ -29,18 +30,18 @@ import DashboardFilter from "./dashboard/DashboardFilter";
 import Stat from "./dashboard/Stat";
 
 // Guest
-import CreateGuestForm from "./guests/CreateGuestForm";
-import GuestList from "./guests/GuestList";
-import GuestListItem from "./guests/GuestListItem";
+// import CreateGuestForm from "./guests/CreateGuestForm";
+// import GuestList from "./guests/GuestList";
+// import GuestListItem from "./guests/GuestListItem";
 
 // Settings
 import UpdateSettingsForm from "./settings/UpdateSettingsForm";
 
 export {
-  LoginForm,
-  SignupForm,
-  UpdatePasswordForm,
-  UpdateUserDataForm,
+  // LoginForm,
+  // SignupForm,
+  // UpdatePasswordForm,
+  // UpdateUserDataForm,
   BookingDataBox,
   BookingDetail,
   BookingRow,
@@ -53,9 +54,9 @@ export {
   DashboardBox,
   DashboardFilter,
   Stat,
-  CreateGuestForm,
-  GuestList,
-  GuestListItem,
+  // CreateGuestForm,
+  // GuestList,
+  // GuestListItem,
   UpdateSettingsForm,
   CabinTable,
   CabinRow,

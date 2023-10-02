@@ -1,4 +1,5 @@
 import {
+  getBookings,
   getBooking,
   getBookingsAfterDate,
   getStaysAfterDate,
@@ -11,6 +12,7 @@ import supabase, { supabaseUrl } from "./supabase";
 import { getCabins, createEditCabin, deleteCabin } from "./apiCabins";
 
 export {
+  getBookings,
   getBooking,
   getBookingsAfterDate,
   getStaysAfterDate,

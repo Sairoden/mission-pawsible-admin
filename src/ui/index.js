@@ -27,6 +27,8 @@ import Modal from "./Modal";
 import Table from "./Table";
 import Menus from "./Menus";
 import Filter from "./Filter";
+import SortBy from "./SortBy";
+import Select from "./Select";
 
 export {
   ButtonGroup,
@@ -58,4 +60,6 @@ export {
   Table,
   Menus,
   Filter,
+  SortBy,
+  Select,
 };
