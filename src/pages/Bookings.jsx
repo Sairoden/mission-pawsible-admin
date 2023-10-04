@@ -1,5 +1,5 @@
 // Features Components
-import { BookingTable } from "../features";
+import { BookingTable, BookingTableOperations } from "../features";
 
 // UI Components
 import { Heading, Row } from "../ui";
@@ -9,7 +9,7 @@ function Bookings() {
     <>
       <Row type="horizontal">
         <Heading as="h1">All bookings</Heading>
-        <p>TEST</p>
+        <BookingTableOperations />
       </Row>
 
       <BookingTable />
