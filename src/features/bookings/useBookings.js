@@ -15,13 +15,18 @@ export const useBookings = () => {
       ? null
       : { field: "status", value: filterValue, method: "eq" };
 
+  // SORT
+  const sortByRaw = searchParams.get("sortBy") || "startDate-desc";
+  const [field, direction] = sortByRaw.split("-");
+  const sortBy = { field, direction };
+
   const {
     data: bookings,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["bookings", filter],
-    queryFn: () => getBookings({ filter }),
+    queryKey: ["bookings", filter, sortBy],
+    queryFn: () => getBookings({ filter, sortBy }),
   });
 
   return { bookings, isLoading, error };
