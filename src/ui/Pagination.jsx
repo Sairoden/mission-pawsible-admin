@@ -5,7 +5,8 @@ import { useSearchParams } from "react-router-dom";
 import styled from "styled-components";
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi2";
 
-const PAGE_SIZE = 10;
+// Utilities
+import { PAGE_SIZE } from "../utils";
 
 function Pagination({ count }) {
   const [searchParams, setSearchParams] = useSearchParams();
