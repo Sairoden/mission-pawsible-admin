@@ -2,7 +2,7 @@
 import { BookingRow } from "../index";
 
 // UI Components
-import { Table, Menus, Empty, Spinner } from "../../ui";
+import { Table, Menus, Empty, Spinner, Pagination } from "../../ui";
 
 // Hooks
 import { useBookings } from "./useBookings";
@@ -30,6 +30,10 @@ function BookingTable() {
           data={bookings}
           render={booking => <BookingRow key={booking.id} booking={booking} />}
         />
+
+        <Table.Footer>
+          <Pagination count={5} />
+        </Table.Footer>
       </Table>
     </Menus>
   );

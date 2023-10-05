@@ -29,6 +29,7 @@ import Menus from "./Menus";
 import Filter from "./Filter";
 import SortBy from "./SortBy";
 import Select from "./Select";
+import Pagination from "./Pagination";
 
 export {
   ButtonGroup,
@@ -62,4 +63,5 @@ export {
   Filter,
   SortBy,
   Select,
+  Pagination,
 };
