@@ -5,16 +5,28 @@ import styled from "styled-components";
 import { BookingDataBox } from "../index";
 
 // UI Components
-import { Row, Heading, Tag, ButtonGroup, Button, ButtonText } from "../../ui";
+import {
+  Row,
+  Heading,
+  Tag,
+  ButtonGroup,
+  Button,
+  ButtonText,
+  Spinner,
+} from "../../ui";
 
 // Hooks
 import { useMoveBack } from "../../hooks";
+import { useBooking } from "./useBooking";
 
 function BookingDetail() {
-  const booking = {};
-  const status = "checked-in";
+  const { booking, isLoading } = useBooking();
 
   const moveBack = useMoveBack();
+
+  if (isLoading) return <Spinner />;
+
+  const { status, id: bookingId } = booking;
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -26,10 +38,9 @@ function BookingDetail() {
     <>
       <Row type="horizontal">
         <HeadingGroup>
-          <Heading as="h1">Booking #X</Heading>
+          <Heading as="h1">Booking #{bookingId}</Heading>
           <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
         </HeadingGroup>
-
         <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
       </Row>
 

@@ -1,11 +1,13 @@
 // React & Libraries
 import { format, isToday } from "date-fns";
+import { useNavigate } from "react-router-dom";
 
 // Styles
 import styled from "styled-components";
+import { HiEye } from "react-icons/hi2";
 
 // UI Components
-import { Tag, Table } from "../../ui";
+import { Tag, Table, Menus } from "../../ui";
 
 // Utilities
 import { formatCurrency, formatDistanceFromNow } from "../../utils";
@@ -29,6 +31,8 @@ function BookingRow({
     "checked-in": "green",
     "checked-out": "silver",
   };
+
+  const navigate = useNavigate();
 
   return (
     <Table.Row>
@@ -55,6 +59,18 @@ function BookingRow({
       <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
 
       <Amount>{formatCurrency(totalPrice)}</Amount>
+
+      <Menus.Menu>
+        <Menus.Toggle id={bookingId} />
+        <Menus.List id={bookingId}>
+          <Menus.Button
+            icon={<HiEye />}
+            onClick={() => navigate(`/bookings/${bookingId}`)}
+          >
+            See details
+          </Menus.Button>
+        </Menus.List>
+      </Menus.Menu>
     </Table.Row>
   );
 }

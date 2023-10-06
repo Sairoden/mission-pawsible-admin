@@ -16,7 +16,7 @@ import { formatDistanceFromNow, formatCurrency } from "../../utils";
 // UI Components
 import { DataItem, Flag } from "../../ui";
 
-function BookingDataBox({ booking }) {
+function BookingDataBox({ booking = {} }) {
   const {
     created_at,
     startDate,
@@ -109,13 +109,14 @@ const StyledBookingDataBox = styled.section`
 
 const Header = styled.header`
   background-color: var(--color-brand-500);
+  /* padding: 2.4rem 4rem; */
   padding: 2rem 4rem;
   color: #e0e7ff;
   font-size: 1.8rem;
   font-weight: 500;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   svg {
     height: 3.2rem;
@@ -145,6 +146,7 @@ const Guest = styled.div`
   display: flex;
   align-items: center;
   gap: 1.2rem;
+  /* font-size: 1.8rem; */
   margin-bottom: 1.6rem;
   color: var(--color-grey-500);
 
@@ -184,7 +186,7 @@ const Footer = styled.footer`
   padding: 1.6rem 4rem;
   font-size: 1.2rem;
   color: var(--color-grey-500);
-  text-align: center;
+  text-align: right;
 `;
 
 export default BookingDataBox;

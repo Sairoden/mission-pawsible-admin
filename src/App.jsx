@@ -21,6 +21,7 @@ import {
   Settings,
   Users,
   PageNotFound,
+  Booking,
 } from "./pages";
 
 // UI Components
@@ -52,6 +53,10 @@ function App() {
         {
           path: "/bookings",
           element: <Bookings />,
+        },
+        {
+          path: "/bookings/:bookingId",
+          element: <Booking />,
         },
         {
           path: "/cabins",
@@ -105,4 +110,4 @@ function App() {
 export default App;
 
 // 0qyZ62KzAlcFfeMx
-// 10
+// 12
