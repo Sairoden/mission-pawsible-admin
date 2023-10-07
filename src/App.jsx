@@ -22,6 +22,7 @@ import {
   Users,
   PageNotFound,
   Booking,
+  Checkin,
 } from "./pages";
 
 // UI Components
@@ -57,6 +58,10 @@ function App() {
         {
           path: "/bookings/:bookingId",
           element: <Booking />,
+        },
+        {
+          path: "/checkin/:bookingId",
+          element: <Checkin />,
         },
         {
           path: "/cabins",
