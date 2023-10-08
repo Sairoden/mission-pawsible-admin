@@ -17,16 +17,20 @@ import {
   Button,
   ButtonText,
   Spinner,
+  Modal,
+  ConfirmDelete,
 } from "../../ui";
 
 // Hooks
 import { useMoveBack } from "../../hooks";
 import { useBooking } from "./useBooking";
 import { useCheckout } from "../check-in-out/useCheckout";
+import { useDeleteBooking } from "./useDeleteBooking";
 
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
   const { checkout, isCheckingOut } = useCheckout();
+  const { deleteBooking, isDeleting } = useDeleteBooking();
 
   const moveBack = useMoveBack();
   const navigate = useNavigate();
@@ -72,6 +76,24 @@ function BookingDetail() {
             Check out
           </Button>
         )}
+
+        <Modal>
+          <Modal.Open opens="delete">
+            <Button variation="danger">Delete booking</Button>
+          </Modal.Open>
+
+          <Modal.Window name="delete">
+            <ConfirmDelete
+              resourceName="booking"
+              disabled={isDeleting}
+              handleConfirm={() =>
+                deleteBooking(bookingId, {
+                  onSuccess: () => navigate(-1),
+                })
+              }
+            />
+          </Modal.Window>
+        </Modal>
 
         <Button variation="secondary" onClick={moveBack}>
           Back
