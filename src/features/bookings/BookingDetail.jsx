@@ -1,8 +1,12 @@
+// React & Libraries
+import { useNavigate } from "react-router-dom";
+
 // Styles
 import styled from "styled-components";
+import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
 
 // Features Components
-import { BookingDataBox } from "../index";
+import { BookingDataBox, CheckoutButton } from "../index";
 
 // UI Components
 import {
@@ -18,11 +22,14 @@ import {
 // Hooks
 import { useMoveBack } from "../../hooks";
 import { useBooking } from "./useBooking";
+import { useCheckout } from "../check-in-out/useCheckout";
 
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
+  const { checkout, isCheckingOut } = useCheckout();
 
   const moveBack = useMoveBack();
+  const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
 
@@ -47,6 +54,25 @@ function BookingDetail() {
       <BookingDataBox booking={booking} />
 
       <ButtonGroup>
+        {status === "unconfirmed" && (
+          <Button
+            icon={<HiArrowDownOnSquare />}
+            onClick={() => navigate(`/checkin/${bookingId}`)}
+          >
+            Check in
+          </Button>
+        )}
+
+        {status === "checked-in" && (
+          <Button
+            icon={<HiArrowUpOnSquare />}
+            onClick={() => checkout(bookingId)}
+            disabled={isCheckingOut}
+          >
+            Check out
+          </Button>
+        )}
+
         <Button variation="secondary" onClick={moveBack}>
           Back
         </Button>
