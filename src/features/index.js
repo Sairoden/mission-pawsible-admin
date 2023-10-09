@@ -1,5 +1,5 @@
 // Authentication
-// import LoginForm from "./authentication/LoginForm";
+import LoginForm from "./authentication/LoginForm";
 // import SignupForm from "./authentication/SignupForm";
 // import UpdatePasswordForm from "./authentication/UpdatePasswordForm";
 // import UpdateUserDataForm from "./authentication/UpdateUserDataForm";
@@ -17,7 +17,6 @@ import CabinTable from "./cabins/CabinTable";
 import CabinRow from "./cabins/CabinRow";
 import AddCabin from "./cabins/AddCabin";
 import CabinTableOperations from "./cabins/CabinTableOperations";
-
 
 // Check-in-out
 import CheckinBooking from "./check-in-out/CheckinBooking";
@@ -38,7 +37,7 @@ import Stat from "./dashboard/Stat";
 import UpdateSettingsForm from "./settings/UpdateSettingsForm";
 
 export {
-  // LoginForm,
+  LoginForm,
   // SignupForm,
   // UpdatePasswordForm,
   // UpdateUserDataForm,

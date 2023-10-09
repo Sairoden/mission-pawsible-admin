@@ -1,8 +1,20 @@
 // Styles
 import styled from "styled-components";
 
+// Features Components
+import { LoginForm } from "../features";
+
+// UI Components
+import { Logo, Heading } from "../ui";
+
 function Login() {
-  return <LoginLayout>Login</LoginLayout>;
+  return (
+    <LoginLayout>
+      <Logo />
+      <Heading as="h4">Log in to your account</Heading>
+      <LoginForm />
+    </LoginLayout>
+  );
 }
 
 const LoginLayout = styled.main`

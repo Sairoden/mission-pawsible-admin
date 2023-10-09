@@ -10,6 +10,7 @@ import {
 import { getSettings, updateSetting } from "./apiSettings";
 import supabase, { supabaseUrl } from "./supabase";
 import { getCabins, createEditCabin, deleteCabin } from "./apiCabins";
+import { login } from "./apiAuth";
 
 export {
   getBookings,
@@ -26,4 +27,5 @@ export {
   supabaseUrl,
   createEditCabin,
   deleteCabin,
+  login,
 };

@@ -2,13 +2,21 @@
 import { useState } from "react";
 
 // UI Components
-import { Button, Form, Input, FormRowVertical } from "../../ui";
+import { Button, Form, Input, FormRowVertical, SpinnerMini } from "../../ui";
+
+// Hooks
+import { useLogin } from "./useLogin";
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("sai@gmail.com");
+  const [password, setPassword] = useState("Sairoden12");
+  const { login, isLoading } = useLogin();
 
-  function handleSubmit() {}
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (!email || !password) return;
+    login({ email, password });
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -20,6 +28,7 @@ function LoginForm() {
           autoComplete="username"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          disabled={isLoading}
         />
       </FormRowVertical>
 
@@ -31,11 +40,14 @@ function LoginForm() {
           autoComplete="current-password"
           value={password}
           onChange={e => setPassword(e.target.value)}
+          disabled={isLoading}
         />
       </FormRowVertical>
 
       <FormRowVertical>
-        <Button size="large">Login</Button>
+        <Button size="large" disabled={isLoading}>
+          {!isLoading ? "Login" : <SpinnerMini />}
+        </Button>
       </FormRowVertical>
     </Form>
   );

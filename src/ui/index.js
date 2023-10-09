@@ -30,6 +30,7 @@ import Filter from "./Filter";
 import SortBy from "./SortBy";
 import Select from "./Select";
 import Pagination from "./Pagination";
+import FormRowVertical from "./FormRowVertical";
 
 export {
   ButtonGroup,
@@ -64,4 +65,5 @@ export {
   SortBy,
   Select,
   Pagination,
+  FormRowVertical,
 };
