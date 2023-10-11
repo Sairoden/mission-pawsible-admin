@@ -26,7 +26,7 @@ import {
 } from "./pages";
 
 // UI Components
-import { AppLayout } from "./ui";
+import { AppLayout, ProtectedRoute } from "./ui";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,47 +40,53 @@ const queryClient = new QueryClient({
 function App() {
   const router = createBrowserRouter([
     {
-      element: <AppLayout />,
+      element: <ProtectedRoute />,
       errorElement: <PageNotFound />,
       children: [
         {
-          path: "/",
-          element: <Navigate replace to="/dashboard" />,
-        },
-        {
-          path: "/dashboard",
-          element: <Dashboard />,
-        },
-        {
-          path: "/bookings",
-          element: <Bookings />,
-        },
-        {
-          path: "/bookings/:bookingId",
-          element: <Booking />,
-        },
-        {
-          path: "/checkin/:bookingId",
-          element: <Checkin />,
-        },
-        {
-          path: "/cabins",
-          element: <Cabins />,
-        },
-        {
-          path: "/users",
-          element: <Users />,
-        },
-        {
-          path: "/settings",
-          element: <Settings />,
-        },
-        {
-          path: "/account",
-          element: <Account />,
+          element: <AppLayout />,
+          children: [
+            {
+              path: "/",
+              element: <Navigate replace to="/dashboard" />,
+            },
+            {
+              path: "/dashboard",
+              element: <Dashboard />,
+            },
+            {
+              path: "/bookings",
+              element: <Bookings />,
+            },
+            {
+              path: "/bookings/:bookingId",
+              element: <Booking />,
+            },
+            {
+              path: "/checkin/:bookingId",
+              element: <Checkin />,
+            },
+            {
+              path: "/cabins",
+              element: <Cabins />,
+            },
+            {
+              path: "/users",
+              element: <Users />,
+            },
+            {
+              path: "/settings",
+              element: <Settings />,
+            },
+            {
+              path: "/account",
+              element: <Account />,
+            },
+          ],
         },
       ],
     },
+ 
     {
       path: "/login",
       element: <Login />,
@@ -115,4 +121,4 @@ function App() {
 export default App;
 
 // 0qyZ62KzAlcFfeMx
-// 16
+// 17

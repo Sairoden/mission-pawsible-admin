@@ -31,6 +31,7 @@ import SortBy from "./SortBy";
 import Select from "./Select";
 import Pagination from "./Pagination";
 import FormRowVertical from "./FormRowVertical";
+import ProtectedRoute from "./ProtectedRoute";
 
 export {
   ButtonGroup,
@@ -66,4 +67,5 @@ export {
   Select,
   Pagination,
   FormRowVertical,
+  ProtectedRoute,
 };

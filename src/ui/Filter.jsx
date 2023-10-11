@@ -1,5 +1,7 @@
-// Styles
+// React & Libraries
 import { useSearchParams } from "react-router-dom";
+
+// Styles
 import styled, { css } from "styled-components";
 
 function Filter({ filterField, options }) {
