@@ -15,10 +15,10 @@ export const useLogin = () => {
     onSuccess: user => {
       queryClient.setQueryData(["user"], user?.user);
       toast.success("You have successfully logged in");
-      navigate("/dashboard");
+      navigate("/dashboard", { replace: true });
     },
     onError: err => {
-      console.log("ERROR", err);
+      console.error("ERROR", err);
       toast.error("Provided email or password are incorrect");
     },
   });

@@ -1,6 +1,7 @@
 // Authentication
 import LoginForm from "./authentication/LoginForm";
-// import SignupForm from "./authentication/SignupForm";
+import Logout from "./authentication/Logout";
+import SignupForm from "./authentication/SignupForm";
 // import UpdatePasswordForm from "./authentication/UpdatePasswordForm";
 // import UpdateUserDataForm from "./authentication/UpdateUserDataForm";
 
@@ -38,9 +39,10 @@ import UpdateSettingsForm from "./settings/UpdateSettingsForm";
 
 export {
   LoginForm,
-  // SignupForm,
+  SignupForm,
   // UpdatePasswordForm,
   // UpdateUserDataForm,
+  Logout,
   BookingDataBox,
   BookingDetail,
   BookingRow,

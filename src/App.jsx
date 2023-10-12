@@ -86,7 +86,7 @@ function App() {
         },
       ],
     },
- 
+
     {
       path: "/login",
       element: <Login />,
@@ -121,4 +121,4 @@ function App() {
 export default App;
 
 // 0qyZ62KzAlcFfeMx
-// 17
+// 19

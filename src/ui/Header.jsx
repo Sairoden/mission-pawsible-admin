@@ -1,8 +1,15 @@
 // Styles
 import styled from "styled-components";
 
+// UI Components
+import { Logout } from "../features";
+
 function Header() {
-  return <StyledHeader>Header</StyledHeader>;
+  return (
+    <StyledHeader>
+      <Logout />
+    </StyledHeader>
+  );
 }
 
 const StyledHeader = styled.header`
