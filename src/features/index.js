@@ -2,6 +2,7 @@
 import LoginForm from "./authentication/LoginForm";
 import Logout from "./authentication/Logout";
 import SignupForm from "./authentication/SignupForm";
+import UserAvatar from "./authentication/UserAvatar";
 // import UpdatePasswordForm from "./authentication/UpdatePasswordForm";
 // import UpdateUserDataForm from "./authentication/UpdateUserDataForm";
 
@@ -40,6 +41,7 @@ import UpdateSettingsForm from "./settings/UpdateSettingsForm";
 export {
   LoginForm,
   SignupForm,
+  UserAvatar,
   // UpdatePasswordForm,
   // UpdateUserDataForm,
   Logout,
