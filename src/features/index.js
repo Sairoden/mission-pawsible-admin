@@ -3,8 +3,8 @@ import LoginForm from "./authentication/LoginForm";
 import Logout from "./authentication/Logout";
 import SignupForm from "./authentication/SignupForm";
 import UserAvatar from "./authentication/UserAvatar";
-// import UpdatePasswordForm from "./authentication/UpdatePasswordForm";
-// import UpdateUserDataForm from "./authentication/UpdateUserDataForm";
+import UpdatePasswordForm from "./authentication/UpdatePasswordForm";
+import UpdateUserDataForm from "./authentication/UpdateUserDataForm";
 
 // Bookings
 import BookingDataBox from "./bookings/BookingDataBox";
@@ -42,8 +42,8 @@ export {
   LoginForm,
   SignupForm,
   UserAvatar,
-  // UpdatePasswordForm,
-  // UpdateUserDataForm,
+  UpdatePasswordForm,
+  UpdateUserDataForm,
   Logout,
   BookingDataBox,
   BookingDetail,

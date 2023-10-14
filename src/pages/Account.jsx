@@ -1,3 +1,6 @@
+// Features Components
+import { UpdateUserDataForm, UpdatePasswordForm } from "../features";
+
 // UI Components
 import { Heading, Row } from "../ui";
 
@@ -8,12 +11,12 @@ function Account() {
 
       <Row>
         <Heading as="h3">Update user data</Heading>
-        <p>Update user data form</p>
+        <UpdateUserDataForm />
       </Row>
 
       <Row>
         <Heading as="h3">Update password</Heading>
-        <p>Update user password form</p>
+        <UpdatePasswordForm />
       </Row>
     </>
   );

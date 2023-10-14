@@ -1,6 +1,5 @@
 // Styles
 import styled from "styled-components";
-import defaultUserAvatar from "../../../public/default-user.jpg";
 
 // Hooks
 import { useUser } from "./useUser";
@@ -11,7 +10,10 @@ function UserAvatar() {
 
   return (
     <StyledUserAvatar>
-      <Avatar src={avatar || defaultUserAvatar} alt={`Avatar of ${fullName}`} />
+      <Avatar
+        src={avatar || "default-user.jpg"}
+        alt={`Avatar of ${fullName}`}
+      />
       <span>{fullName}</span>
     </StyledUserAvatar>
   );

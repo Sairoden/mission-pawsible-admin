@@ -10,7 +10,13 @@ import {
 import { getSettings, updateSetting } from "./apiSettings";
 import supabase, { supabaseUrl } from "./supabase";
 import { getCabins, createEditCabin, deleteCabin } from "./apiCabins";
-import { login, getCurrentUser, logout, signup } from "./apiAuth";
+import {
+  login,
+  getCurrentUser,
+  logout,
+  signup,
+  updateCurrentUser,
+} from "./apiAuth";
 
 export {
   getBookings,
@@ -31,4 +37,5 @@ export {
   getCurrentUser,
   logout,
   signup,
+  updateCurrentUser,
 };
