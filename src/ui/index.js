@@ -33,6 +33,7 @@ import Pagination from "./Pagination";
 import FormRowVertical from "./FormRowVertical";
 import ProtectedRoute from "./ProtectedRoute";
 import HeaderMenu from "./HeaderMenu";
+import DarkModeToggle from "./DarkModeToggle";
 
 export {
   ButtonGroup,
@@ -70,4 +71,5 @@ export {
   FormRowVertical,
   ProtectedRoute,
   HeaderMenu,
+  DarkModeToggle,
 };

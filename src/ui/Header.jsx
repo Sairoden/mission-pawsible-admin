@@ -25,7 +25,6 @@ const StyledHeader = styled.header`
   gap: 2.4rem;
   align-items: center;
   justify-content: flex-end;
-  margin-top: 1rem;
 `;
 
 export default Header;

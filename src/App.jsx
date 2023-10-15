@@ -45,7 +45,7 @@ function App() {
       children: [
         {
           element: <AppLayout />,
-          children: [
+          children: [ 
             {
               path: "/",
               element: <Navigate replace to="/dashboard" />,
@@ -121,4 +121,4 @@ function App() {
 export default App;
 
 // 0qyZ62KzAlcFfeMx
-// 24
+// 25

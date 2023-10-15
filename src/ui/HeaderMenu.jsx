@@ -9,7 +9,7 @@ import { HiOutlineUser } from "react-icons/hi2";
 import { Logout } from "../features";
 
 // UI Components
-import { ButtonIcon } from "./index";
+import { ButtonIcon, DarkModeToggle } from "./index";
 
 function HeaderMenu() {
   const navigate = useNavigate();
@@ -20,6 +20,10 @@ function HeaderMenu() {
         <ButtonIcon onClick={() => navigate("/account")}>
           <HiOutlineUser />
         </ButtonIcon>
+      </li>
+
+      <li>
+        <DarkModeToggle />
       </li>
 
       <li>
