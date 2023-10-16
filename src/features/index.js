@@ -27,6 +27,7 @@ import Today from "./check-in-out/TodayActivity";
 
 // Dashboard
 import DashboardBox from "./dashboard/DashboardBox";
+import DashboardLayout from "./dashboard/DashboardLayout";
 import DashboardFilter from "./dashboard/DashboardFilter";
 import Stat from "./dashboard/Stat";
 
@@ -56,6 +57,7 @@ export {
   Today,
   DashboardBox,
   DashboardFilter,
+  DashboardLayout,
   Stat,
   // CreateGuestForm,
   // GuestList,
