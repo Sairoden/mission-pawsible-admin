@@ -30,6 +30,7 @@ import DashboardBox from "./dashboard/DashboardBox";
 import DashboardLayout from "./dashboard/DashboardLayout";
 import DashboardFilter from "./dashboard/DashboardFilter";
 import Stat from "./dashboard/Stat";
+import Stats from "./dashboard/Stats";
 
 // Guest
 // import CreateGuestForm from "./guests/CreateGuestForm";
@@ -67,4 +68,5 @@ export {
   CabinRow,
   AddCabin,
   CabinTableOperations,
+  Stats,
 };
