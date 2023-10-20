@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // Features Components
-import { Stats, SalesChart } from "../index";
+import { Stats, SalesChart, DurationChart } from "../index";
 
 // UI Components
 import { Spinner } from "../../ui";
@@ -25,7 +25,6 @@ function DashboardLayout() {
   if (isLoadingBookings || isLoadingStays || isLoadingCabins)
     return <Spinner />;
 
-
   return (
     <StyledDashboardLayout>
       <Stats
@@ -35,7 +34,7 @@ function DashboardLayout() {
         cabinCount={cabins.length}
       />
       <div>Today's activity</div>
-      <div>Chart stay durations</div>
+      <DurationChart confirmedStays={confirmedStays} />
       <SalesChart bookings={bookings} numDays={numDays} />
     </StyledDashboardLayout>
   );

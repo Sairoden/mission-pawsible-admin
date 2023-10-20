@@ -32,6 +32,7 @@ import DashboardFilter from "./dashboard/DashboardFilter";
 import Stat from "./dashboard/Stat";
 import Stats from "./dashboard/Stats";
 import SalesChart from "./dashboard/SalesChart";
+import DurationChart from "./dashboard/DurationChart";
 
 // Guest
 // import CreateGuestForm from "./guests/CreateGuestForm";
@@ -71,4 +72,5 @@ export {
   CabinTableOperations,
   Stats,
   SalesChart,
+  DurationChart,
 };

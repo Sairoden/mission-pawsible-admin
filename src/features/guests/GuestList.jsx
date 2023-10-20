@@ -7,6 +7,8 @@ import { useGuests, GuestListItem } from "features/guests/useGuests";
 // UI Components
 import { Pagination, Spinner } from "../../ui";
 
+// Hooks
+
 function GuestList({ onClick }) {
   const { isLoading, guests, count } = useGuests();
 
