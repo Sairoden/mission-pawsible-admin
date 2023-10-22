@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 // UI Components
 import { Logo, MainNav } from "./index";
-import Uploader from "../data/Uploader";
+// import Uploader from "../data/Uploader";
 
 function Sidebar() {
   return (
     <StyledSidebar>
       <Logo />
       <MainNav />
-      <Uploader />
+      {/* <Uploader /> */}
     </StyledSidebar>
   );
 }

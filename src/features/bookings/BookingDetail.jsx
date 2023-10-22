@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
 
 // Features Components
-import { BookingDataBox, CheckoutButton } from "../index";
+import { BookingDataBox } from "../index";
 
 // UI Components
 import {
@@ -19,6 +19,7 @@ import {
   Spinner,
   Modal,
   ConfirmDelete,
+  Empty,
 } from "../../ui";
 
 // Hooks
@@ -36,6 +37,7 @@ function BookingDetail() {
   const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
+  if (!booking) return <Empty resourceName="booking" />;
 
   const { status, id: bookingId } = booking;
 

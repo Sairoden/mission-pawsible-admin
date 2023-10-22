@@ -42,7 +42,7 @@ function App() {
     {
       element: <ProtectedRoute />,
       errorElement: <PageNotFound />,
-      ErrorBoundary: <ErrorFallBack />, 
+      ErrorBoundary: <ErrorFallBack />,
       children: [
         {
           element: <AppLayout />,
@@ -122,4 +122,4 @@ function App() {
 export default App;
 
 // 0qyZ62KzAlcFfeMx
-// 32
+// 33
