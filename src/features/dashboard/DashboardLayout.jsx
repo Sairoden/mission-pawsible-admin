@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // Features Components
-import { Stats, SalesChart, DurationChart } from "../index";
+import { Stats, SalesChart, DurationChart, Today } from "../index";
 
 // UI Components
 import { Spinner } from "../../ui";
@@ -33,7 +33,7 @@ function DashboardLayout() {
         numDays={numDays}
         cabinCount={cabins.length}
       />
-      <div>Today's activity</div>
+      <Today />
       <DurationChart confirmedStays={confirmedStays} />
       <SalesChart bookings={bookings} numDays={numDays} />
     </StyledDashboardLayout>

@@ -24,6 +24,7 @@ import CabinTableOperations from "./cabins/CabinTableOperations";
 import CheckinBooking from "./check-in-out/CheckinBooking";
 import CheckoutButton from "./check-in-out/CheckoutButton";
 import Today from "./check-in-out/TodayActivity";
+import TodayItem from "./check-in-out/TodayItem";
 
 // Dashboard
 import DashboardBox from "./dashboard/DashboardBox";
@@ -73,4 +74,5 @@ export {
   Stats,
   SalesChart,
   DurationChart,
+  TodayItem,
 };

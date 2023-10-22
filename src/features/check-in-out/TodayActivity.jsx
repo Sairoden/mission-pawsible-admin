@@ -1,15 +1,37 @@
 // Styles
 import styled from "styled-components";
 
+// Features Components
+import { TodayItem } from "../index";
+
 // UI Components
-import { Heading, Row } from "../../ui";
+import { Heading, Row, Spinner } from "../../ui";
+
+// Hooks
+import { useTodayActivity } from "./useTodayActivity";
 
 function Today() {
+  const { activities, isLoading } = useTodayActivity();
+
   return (
     <StyledToday>
       <Row type="horizontal">
         <Heading as="h2">Today</Heading>
       </Row>
+
+      {!isLoading ? (
+        activities?.length > 0 ? (
+          <TodayList>
+            {activities.map(activity => (
+              <TodayItem activity={activity} key={activity.id} />
+            ))}
+          </TodayList>
+        ) : (
+          <NoActivity>No Activity Today...</NoActivity>
+        )
+      ) : (
+        <Spinner />
+      )}
     </StyledToday>
   );
 }

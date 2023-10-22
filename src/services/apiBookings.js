@@ -106,7 +106,7 @@ export async function getStaysTodayActivity() {
 
     return data;
   } catch (err) {
-    console.error(err.message);
+    console.error(err.message); 
   }
 }
 
