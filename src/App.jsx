@@ -26,7 +26,7 @@ import {
 } from "./pages";
 
 // UI Components
-import { AppLayout, ProtectedRoute } from "./ui";
+import { AppLayout, ErrorFallBack, ProtectedRoute } from "./ui";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,6 +42,7 @@ function App() {
     {
       element: <ProtectedRoute />,
       errorElement: <PageNotFound />,
+      ErrorBoundary: <ErrorFallBack />, 
       children: [
         {
           element: <AppLayout />,
@@ -121,4 +122,4 @@ function App() {
 export default App;
 
 // 0qyZ62KzAlcFfeMx
-// 31
+// 32

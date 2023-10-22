@@ -34,6 +34,7 @@ import FormRowVertical from "./FormRowVertical";
 import ProtectedRoute from "./ProtectedRoute";
 import HeaderMenu from "./HeaderMenu";
 import DarkModeToggle from "./DarkModeToggle";
+import ErrorFallBack from "./ErrorFallBack";
 
 export {
   ButtonGroup,
@@ -72,4 +73,5 @@ export {
   ProtectedRoute,
   HeaderMenu,
   DarkModeToggle,
+  ErrorFallBack,
 };
