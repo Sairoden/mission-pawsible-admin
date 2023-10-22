@@ -8,8 +8,8 @@ import { Button, Form, Input, FormRowVertical, SpinnerMini } from "../../ui";
 import { useLogin } from "./useLogin";
 
 function LoginForm() {
-  const [email, setEmail] = useState("sai@gmail.com");
-  const [password, setPassword] = useState("Sairoden12");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { login, isLoading } = useLogin();
 
   const handleSubmit = e => {
