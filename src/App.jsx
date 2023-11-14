@@ -16,17 +16,15 @@ import {
   Dashboard,
   Account,
   Bookings,
-  Cabins,
-  Login,
-  Settings,
   Users,
+  Login,
+  User,
   PageNotFound,
   Booking,
-  Checkin,
 } from "./pages";
 
 // UI Components
-import { AppLayout, ErrorFallBack, ProtectedRoute } from "./ui";
+import { AppLayout, ProtectedRoute } from "./ui";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,29 +53,22 @@ function App() {
               element: <Dashboard />,
             },
             {
-              path: "/bookings",
+              path: "/pets",
               element: <Bookings />,
             },
             {
-              path: "/bookings/:bookingId",
+              path: "/pets/:bookingId",
               element: <Booking />,
-            },
-            {
-              path: "/checkin/:bookingId",
-              element: <Checkin />,
-            },
-            {
-              path: "/cabins",
-              element: <Cabins />,
             },
             {
               path: "/users",
               element: <Users />,
             },
             {
-              path: "/settings",
-              element: <Settings />,
+              path: "/register",
+              element: <User />,
             },
+
             {
               path: "/account",
               element: <Account />,

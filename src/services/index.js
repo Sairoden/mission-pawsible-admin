@@ -1,3 +1,5 @@
+import supabase, { supabaseUrl } from "./supabase";
+
 import {
   getBookings,
   getBooking,
@@ -6,10 +8,13 @@ import {
   getStaysTodayActivity,
   updateBooking,
   deleteBooking,
+  getPets,
 } from "./apiBookings";
-import { getSettings, updateSetting } from "./apiSettings";
-import supabase, { supabaseUrl } from "./supabase";
-import { getCabins, createEditCabin, deleteCabin } from "./apiCabins";
+
+// USERS
+import { getUsers, editUser, deleteUser } from "./apiCabins";
+
+// AUTH
 import {
   login,
   getCurrentUser,
@@ -19,6 +24,8 @@ import {
 } from "./apiAuth";
 
 export {
+  supabase,
+  supabaseUrl,
   getBookings,
   getBooking,
   getBookingsAfterDate,
@@ -26,16 +33,13 @@ export {
   getStaysTodayActivity,
   updateBooking,
   deleteBooking,
-  getSettings,
-  updateSetting,
-  supabase,
-  getCabins,
-  supabaseUrl,
-  createEditCabin,
-  deleteCabin,
   login,
   getCurrentUser,
   logout,
   signup,
   updateCurrentUser,
+  getUsers,
+  editUser,
+  deleteUser,
+  getPets,
 };

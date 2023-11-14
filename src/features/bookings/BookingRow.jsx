@@ -22,23 +22,24 @@ import { useDeleteBooking } from "./useDeleteBooking";
 import { formatCurrency, formatDistanceFromNow } from "../../utils";
 
 function BookingRow({
-  booking: {
-    id: bookingId,
-    created_at,
-    startDate,
-    endDate,
-    numNights,
-    numGuests,
-    totalPrice,
+  pet: {
+    id: petId,
+    petName,
+    petType,
+    breed,
+    color,
+    size,
+    gender,
+    location,
+    date,
     status,
-    guests: { fullName: guestName, email },
-    cabins: { name: cabinName },
+    users: { firstName, lastName, email },
   },
 }) {
   const statusToTagName = {
-    unconfirmed: "blue",
-    "checked-in": "green",
-    "checked-out": "silver",
+    lost: "red",
+    found: "green",
+    reunited: "blue",
   };
 
   const navigate = useNavigate();
@@ -47,58 +48,44 @@ function BookingRow({
 
   return (
     <Table.Row>
-      <Cabin>{cabinName}</Cabin>
+      <Cabin>1</Cabin>
       <Stacked>
-        <span>{guestName}</span>
+        <span>
+          {firstName} {lastName}
+        </span>
         <span>{email}</span>
       </Stacked>
       <Stacked>
-        <span>
-          {isToday(new Date(startDate))
-            ? "Today"
-            : formatDistanceFromNow(startDate)}{" "}
-          &rarr; {numNights} night stay
-        </span>
-        <span>
-          {format(new Date(startDate), "MMM dd yyyy")} &mdash;{" "}
-          {format(new Date(endDate), "MMM dd yyyy")}
-        </span>
+        <span>{petName}</span>
+        <span>{gender}</span>
       </Stacked>
-      <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
-      <Amount>{formatCurrency(totalPrice)}</Amount>
+      <Stacked>
+        <span>{petType}</span>
+        <span>{breed}</span>
+      </Stacked>
+      <Stacked>
+        <span>{color}</span>
+        <span>Size: {size}</span>
+      </Stacked>
+      <Stacked>
+        <span>{format(new Date(date), "MMM dd yyyy")}</span>
+        <span>{location}</span>
+      </Stacked>
+      <Tag type={statusToTagName[status]}>{status} Pet</Tag>
 
       <Modal>
         <Menus.Menu>
-          <Menus.Toggle id={bookingId} />
-          <Menus.List id={bookingId}>
+          <Menus.Toggle id={petId} />
+          <Menus.List id={petId}>
             <Menus.Button
               icon={<HiEye />}
-              onClick={() => navigate(`/bookings/${bookingId}`)}
+              onClick={() => navigate(`/pets/${petId}`)}
             >
               See details
             </Menus.Button>
 
-            {status === "unconfirmed" && (
-              <Menus.Button
-                icon={<HiArrowDownOnSquare />}
-                onClick={() => navigate(`/checkin/${bookingId}`)}
-              >
-                Check in
-              </Menus.Button>
-            )}
-
-            {status === "checked-in" && (
-              <Menus.Button
-                icon={<HiArrowUpOnSquare />}
-                onClick={() => checkout(bookingId)}
-                disabled={isCheckingOut}
-              >
-                Check out
-              </Menus.Button>
-            )}
-
             <Modal.Open opens="delete">
-              <Menus.Button icon={<HiTrash />}>Delete booking</Menus.Button>
+              <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
             </Modal.Open>
           </Menus.List>
         </Menus.Menu>
@@ -107,7 +94,7 @@ function BookingRow({
           <ConfirmDelete
             resourceName="booking"
             disabled={isDeleting}
-            handleConfirm={() => deleteBooking(bookingId)}
+            handleConfirm={() => deleteBooking(petId)}
           />
         </Modal.Window>
       </Modal>

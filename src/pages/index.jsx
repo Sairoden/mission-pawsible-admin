@@ -1,23 +1,21 @@
 import Account from "./Account";
 import Bookings from "./Bookings";
-import Cabins from "./Cabins";
+import Users from "./Users";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PageNotFound from "./PageNotFound";
-import Settings from "./Settings";
-import Users from "./Users";
+import User from "./User";
 import Booking from "./Booking";
 import Checkin from "./Checkin";
 
 export {
   Account,
   Bookings,
-  Cabins,
+  Users,
   Dashboard,
   Login,
   PageNotFound,
-  Settings,
-  Users,
+  User,
   Booking,
   Checkin,
 };

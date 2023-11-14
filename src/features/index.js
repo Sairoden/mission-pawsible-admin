@@ -14,11 +14,10 @@ import BookingTable from "./bookings/BookingTable";
 import BookingTableOperations from "./bookings/BookingTableOperations";
 
 // Cabins
-import CreateCabinForm from "./cabins/CreateCabinForm";
-import CabinTable from "./cabins/CabinTable";
-import CabinRow from "./cabins/CabinRow";
-import AddCabin from "./cabins/AddCabin";
-import CabinTableOperations from "./cabins/CabinTableOperations";
+import EditUserForm from "./users/EditUserForm";
+import UserTable from "./users/UserTable";
+import UserRow from "./users/UserRow";
+import UserTableOperations from "./users/UserTableOperations";
 
 // Check-in-out
 import CheckinBooking from "./check-in-out/CheckinBooking";
@@ -40,9 +39,6 @@ import DurationChart from "./dashboard/DurationChart";
 // import GuestList from "./guests/GuestList";
 // import GuestListItem from "./guests/GuestListItem";
 
-// Settings
-import UpdateSettingsForm from "./settings/UpdateSettingsForm";
-
 export {
   LoginForm,
   SignupForm,
@@ -55,7 +51,7 @@ export {
   BookingRow,
   BookingTable,
   BookingTableOperations,
-  CreateCabinForm,
+  EditUserForm,
   CheckinBooking,
   CheckoutButton,
   Today,
@@ -66,11 +62,9 @@ export {
   // CreateGuestForm,
   // GuestList,
   // GuestListItem,
-  UpdateSettingsForm,
-  CabinTable,
-  CabinRow,
-  AddCabin,
-  CabinTableOperations,
+  UserTable,
+  UserRow,
+  UserTableOperations,
   Stats,
   SalesChart,
   DurationChart,

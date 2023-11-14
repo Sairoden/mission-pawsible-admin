@@ -13,36 +13,50 @@ function UpdateUserDataForm() {
   const {
     user: {
       email,
-      user_metadata: { fullName: currentFullName },
+      user_metadata: {
+        firstName: currentFirstName,
+        lastName: currentLastName,
+        address: currentAddress,
+        contactNumber: currentContactNumber,
+      },
     },
   } = useUser();
 
   const { updateUser, isUpdating } = useUpdateUser();
 
-  const [fullName, setFullName] = useState(currentFullName);
+  const [firstName, setFirstName] = useState(currentFirstName);
+  const [lastName, setLastName] = useState(currentLastName);
+  const [address, setAddress] = useState(currentAddress);
+  const [contactNumber, setContactNumber] = useState(currentContactNumber);
+
   const [avatar, setAvatar] = useState(null);
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    if (!fullName) return;
+    if (!firstName || !lastName || !address || !contactNumber) return;
 
-    updateUser(
-      {
-        fullName,
-        avatar,
+    const updateUserData = {
+      firstName,
+      lastName,
+      address,
+      contactNumber,
+      avatar,
+    };
+
+    updateUser(updateUserData, {
+      onSuccess: () => {
+        setAvatar(null);
+        e.target.reset();
       },
-      {
-        onSuccess: () => {
-          setAvatar(null);
-          e.target.reset();
-        },
-      }
-    );
+    });
   }
 
   function handleCancel() {
-    setFullName(currentFullName);
+    setFirstName(currentFirstName);
+    setLastName(currentLastName);
+    setAddress(currentAddress);
+    setContactNumber(currentContactNumber);
     setAvatar(null);
   }
 
@@ -52,12 +66,42 @@ function UpdateUserDataForm() {
         <Input value={email} disabled />
       </FormRow>
 
-      <FormRow label="Full name">
+      <FormRow label="First name">
         <Input
-          id="fullName"
+          id="firstName"
           type="text"
-          value={fullName}
-          onChange={e => setFullName(e.target.value)}
+          value={firstName}
+          onChange={e => setFirstName(e.target.value)}
+          disabled={isUpdating}
+        />
+      </FormRow>
+
+      <FormRow label="Last name">
+        <Input
+          id="lastName"
+          type="text"
+          value={lastName}
+          onChange={e => setLastName(e.target.value)}
+          disabled={isUpdating}
+        />
+      </FormRow>
+
+      <FormRow label="Address">
+        <Input
+          id="address"
+          type="text"
+          value={address}
+          onChange={e => setAddress(e.target.value)}
+          disabled={isUpdating}
+        />
+      </FormRow>
+
+      <FormRow label="Contact Number">
+        <Input
+          id="contactNumber"
+          type="text"
+          value={contactNumber}
+          onChange={e => setContactNumber(e.target.value)}
           disabled={isUpdating}
         />
       </FormRow>

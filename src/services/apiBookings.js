@@ -4,6 +4,36 @@ import supabase from "./supabase";
 // Utilities
 import { getToday, PAGE_SIZE } from "../utils";
 
+export async function getPets({ filter, page }) {
+  try {
+    let query = supabase
+      .from("pets")
+      .select(
+        "id, petName, petType, breed, color, size, gender, location, microchipped, date, message, description, status, users(firstName, lastName, email)",
+        { count: "exact" }
+      );
+
+    // FILTER
+    if (filter)
+      query = query[filter.method || "eq"](filter.field, filter.value);
+
+    if (page) {
+      const from = (page - 1) * PAGE_SIZE;
+      const to = from + PAGE_SIZE - 1;
+
+      query = query.range(from, to);
+    }
+
+    const { data, error, count } = await query;
+
+    if (error) throw new Error("Pets could not be loaded");
+
+    return { data, count };
+  } catch (err) {
+    console.error(err.message);
+  }
+}
+
 export async function getBookings({ filter, sortBy, page }) {
   try {
     let query = supabase
@@ -106,7 +136,7 @@ export async function getStaysTodayActivity() {
 
     return data;
   } catch (err) {
-    console.error(err.message); 
+    console.error(err.message);
   }
 }
 

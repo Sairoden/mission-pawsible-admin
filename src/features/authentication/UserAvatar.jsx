@@ -6,7 +6,8 @@ import { useUser } from "./useUser";
 
 function UserAvatar() {
   const { user } = useUser();
-  const { fullName, avatar } = user.user_metadata;
+  const { firstName, lastName, avatar } = user.user_metadata;
+  const fullName = `${firstName} ${lastName}`;
 
   return (
     <StyledUserAvatar>

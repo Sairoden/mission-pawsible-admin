@@ -1,11 +1,11 @@
 // Services
 import { supabase, supabaseUrl } from "./index";
 
-export const getCabins = async () => {
+export const getUsers = async () => {
   try {
-    let { data, error } = await supabase.from("cabins").select("*");
+    let { data, error } = await supabase.from("users").select("*");
 
-    if (error) throw new Error("Cabins could not be loaded");
+    if (error) throw new Error("Users could not be loaded");
 
     return data;
   } catch (err) {
@@ -13,43 +13,41 @@ export const getCabins = async () => {
   }
 };
 
-export const createEditCabin = async (newCabin, id) => {
+export const editUser = async (newUser, id) => {
   try {
-    const hasImagePath = newCabin.image?.startsWith?.(supabaseUrl);
-    const imageName = `${Math.random()}-${newCabin.image.name}`.replaceAll(
+    console.log(newUser);
+    const hasAvatarPath = newUser.avatar?.startsWith?.(supabaseUrl);
+    const avatarName = `${Math.random()}-${newUser.avatar.name}`.replaceAll(
       "/",
       ""
     );
-    const imagePath = hasImagePath
-      ? newCabin.image
-      : `${supabaseUrl}/storage/v1/object/public/cabin-images/${imageName}`;
+    const avatarPath = hasAvatarPath
+      ? newUser.avatar
+      : `${supabaseUrl}/storage/v1/object/public/avatars/${avatarName}`;
 
     // 1. Create/edit the cabin
-    let query = supabase.from("cabins");
+    let query = supabase.from("users");
 
-    // A) CREATE
-    if (!id) query = query.insert([{ ...newCabin, image: imagePath }]);
-
-    // B) EDIT
+    // 2.
     if (id)
-      query = query.update({ ...newCabin, image: imagePath }).eq("id", id);
+      query = query.update({ ...newUser, avatar: avatarPath }).eq("id", id);
 
     const { data, error } = await query.select().single();
 
-    if (error) throw new Error("Cabins could not be created");
+    if (error) throw new Error("Users could not be edited");
 
-    // 2. Upload image
-    if (hasImagePath) return data;
+    // 2. Upload avatar
+    if (hasAvatarPath) return data;
 
     const { error: storageError } = await supabase.storage
-      .from("cabin-images")
-      .upload(imageName, newCabin.image);
+      .from("avatars")
+      .upload(avatarName, newUser.avatar);
 
-    // 3. Delete the cabin IF there was an error uploading image
+    // 3. Delete the cabin IF there was an error uploading avatar
     if (storageError) {
-      await supabase.from("cabins").delete().eq("id", data.id);
+      await supabase.from("users").delete().eq("id", data.id);
       throw new Error(
-        "Cabin image could not be uploaded and the cabin was not created"
+        "User avatar could not be uploaded and the user was not edited"
       );
     }
 
@@ -59,14 +57,15 @@ export const createEditCabin = async (newCabin, id) => {
   }
 };
 
-export const deleteCabin = async id => {
-  try {
-    const { data, error } = await supabase.from("cabins").delete().eq("id", id);
+export const deleteUser = async id => {
+  let { data: user } = await supabase.from("users").select("*").eq("id", id);
 
-    if (error) throw new Error("Cabin could not be deleted");
+  if (user[0].role === "admin")
+    throw new Error("You can't delete an administrator");
 
-    return data;
-  } catch (err) {
-    console.error(err.message);
-  }
+  const { data, error } = await supabase.from("users").delete().eq("id", id);
+
+  if (error) throw new Error("User could not be deleted");
+
+  return data;
 };

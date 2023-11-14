@@ -14,10 +14,7 @@ function ConfirmDelete({
     <StyledConfirmDelete>
       <Heading as="h3">Delete {resourceName}</Heading>
 
-      <p>
-        Are you sure you want to delete this {resourceName} permanently? This
-        action cannot be undone.
-      </p>
+      <p>Are you sure you want to delete this {resourceName} permanently?</p>
 
       <div>
         <Button

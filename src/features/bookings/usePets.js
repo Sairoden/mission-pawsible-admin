@@ -3,19 +3,19 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
 // Services
-import { getBookings } from "../../services";
+import { getPets } from "../../services";
 
 // Utilities
 import { PAGE_SIZE } from "../../utils";
 
-export const useBookings = () => {
+export const usePets = () => {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
   // FITER
-  const filterValue = searchParams.get("status");
+  const filterValue = searchParams.get("status") || "all";
   const filter =
-    !filterValue || filterValue === "all"
+    filterValue === "all"
       ? null
       : { field: "status", value: filterValue, method: "eq" };
 
@@ -23,12 +23,12 @@ export const useBookings = () => {
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
   const {
-    data: { data: bookings, count } = {},
+    data: { data: pets, count } = {},
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["bookings", filter, page],
-    queryFn: () => getBookings({ filter, page }),
+    queryKey: ["pets", filter, page],
+    queryFn: () => getPets({ filter, page }),
   });
 
   // PRE-FETCHING
@@ -36,15 +36,15 @@ export const useBookings = () => {
 
   if (page < pageCount)
     queryClient.prefetchQuery({
-      queryKey: ["bookings", filter, page + 1],
-      queryFn: () => getBookings({ filter, page: page + 1 }),
+      queryKey: ["pets", filter, page + 1],
+      queryFn: () => getPets({ filter, page: page + 1 }),
     });
 
   if (page > 1)
     queryClient.prefetchQuery({
-      queryKey: ["bookings", filter, page - 1],
-      queryFn: () => getBookings({ filter, page: page - 1 }),
+      queryKey: ["pets", filter, page - 1],
+      queryFn: () => getPets({ filter, page: page - 1 }),
     });
 
-  return { bookings, isLoading, error, count };
+  return { pets, isLoading, error, count };
 };

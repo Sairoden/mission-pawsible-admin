@@ -17,3 +17,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </ErrorBoundary>
   </React.StrictMode>
 );
+
+// TO DO
+// 0. REFACTOR CABINS
+// 1. PETS LIST
+// 1.2 DELETE PET
+// 2. REGISTER A PET
+// 2.2 EDIT PET
+// 3. DASHBOARD

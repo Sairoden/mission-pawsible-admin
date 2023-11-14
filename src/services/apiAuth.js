@@ -1,13 +1,23 @@
 // Services
 import supabase, { supabaseUrl } from "./supabase";
 
-export const signup = async ({ fullName, email, password }) => {
+export const signup = async ({
+  firstName,
+  lastName,
+  address,
+  contactNumber,
+  email,
+  password,
+}) => {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: {
-        fullName,
+        firstName,
+        lastName,
+        address,
+        contactNumber,
         avatar: "",
       },
     },
@@ -19,6 +29,13 @@ export const signup = async ({ fullName, email, password }) => {
 };
 
 export const login = async ({ email, password }) => {
+  let { data: user, error: userError } = await supabase
+    .from("users")
+    .select("*")
+    .eq("email", email);
+
+  if (user[0]?.role !== "admin") throw new Error("You are not an admin");
+
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password,
@@ -36,7 +53,21 @@ export const getCurrentUser = async () => {
 
   const { data, error } = await supabase.auth.getUser();
 
-  if (error) throw new Error(error.message);
+  let { data: user, error: userError } = await supabase
+    .from("users")
+    .select("*")
+    .eq("email", data.user.email);
+
+  data.user.user_metadata = {
+    avatar: user[0].avatar,
+    firstName: user[0].firstName,
+    lastName: user[0].lastName,
+    email: user[0].email,
+    contactNumber: user[0].contactNumber,
+    address: user[0].address,
+  };
+
+  if (error || userError) throw new Error(error.message);
 
   return data?.user;
 };
@@ -47,25 +78,40 @@ export const logout = async () => {
   if (error) throw new Error(error.message);
 };
 
-export const updateCurrentUser = async ({ password, fullName, avatar }) => {
+export const updateCurrentUser = async ({
+  password,
+  firstName,
+  lastName,
+  address,
+  contactNumber,
+  avatar,
+}) => {
   // 1. Update password or fullName
   let updateData;
 
-  if (password)
+  if (password) {
     updateData = {
       password,
     };
-
-  if (fullName)
+  } else {
     updateData = {
       data: {
-        fullName,
+        firstName,
+        lastName,
+        address,
+        contactNumber,
       },
     };
+  }
 
   const { data, error } = await supabase.auth.updateUser(updateData);
+  const { error: userError } = await supabase
+    .from("users")
+    .update(updateData.data)
+    .eq("email", data.user.email);
 
-  if (error) throw new Error(error.message);
+  if (error || userError) throw new Error(error.message);
+
   if (!avatar) return data;
 
   // 2. Upload the avatar image to supabase bucket
@@ -78,14 +124,22 @@ export const updateCurrentUser = async ({ password, fullName, avatar }) => {
   if (storageError) throw new Error(storageError.message);
 
   // 3. Update avatar in the user
-  const { data: updatedUser, error: avatarError } =
-    await supabase.auth.updateUser({
-      data: {
-        avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${fileName}`,
-      },
-    });
+  const { data: data2, error: error2 } = await supabase.auth.updateUser({
+    data: {
+      avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${fileName}`,
+    },
+  });
 
-  if (avatarError) throw new Error(storageError.message);
+  const { error: userError2 } = await supabase
+    .from("users")
+    .update({
+      avatar: `${supabaseUrl}/storage/v1/object/public/avatars/${fileName}`,
+    })
+    .eq("email", data2.user.email);
 
-  return updatedUser;
+  if (error2) throw new Error(error2.message);
+
+  if (userError2) throw new Error(userError2.message);
+
+  return data2;
 };
