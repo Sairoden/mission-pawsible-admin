@@ -41,12 +41,13 @@ function UserTable() {
 
   return (
     <Menus>
-      <Table columns="2.5fr 2fr 2fr 3.5fr 3.5fr 4fr 1rem">
+      <Table columns="1.5fr 1.3fr 1.3fr 1.3fr 2.5fr 1.7fr 1.5fr 3.2rem">
         <Table.Header>
           <div></div>
+          <div>USER ID</div>
           <div>First Name</div>
           <div>Last Name</div>
-          <div>Email</div>
+          <div>Email Address</div>
           <div>Contact Number</div>
           <div>Address</div>
           <div></div>

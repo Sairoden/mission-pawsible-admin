@@ -16,7 +16,7 @@ function BookingTable() {
 
   return (
     <Menus>
-      <Table columns="1fr 2.5fr 2fr 2fr 2.5fr 3fr 1.8fr 3.2rem">
+      <Table columns="1fr 2.5fr 2fr 2fr 2.5fr 3fr 2fr 3.2rem">
         {/* 0.6fr 2fr 2.4fr 1.4fr 1fr 3.2rem/ */}
         <Table.Header>
           <div>Pet ID</div>

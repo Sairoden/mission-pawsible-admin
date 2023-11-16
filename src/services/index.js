@@ -1,5 +1,7 @@
+// SUPABASE
 import supabase, { supabaseUrl } from "./supabase";
 
+// BOOKINGS
 import {
   getBookings,
   getBooking,
@@ -12,7 +14,7 @@ import {
 } from "./apiBookings";
 
 // USERS
-import { getUsers, editUser, deleteUser } from "./apiCabins";
+import { getUsers, editUser, deleteUser } from "./apiUsers";
 
 // AUTH
 import {
@@ -22,6 +24,12 @@ import {
   signup,
   updateCurrentUser,
 } from "./apiAuth";
+
+// PETS
+import { createPet } from "./apiPets";
+
+// GEOCODING
+import { getCoordsForAddress } from "./apiLocation";
 
 export {
   supabase,
@@ -42,4 +50,6 @@ export {
   editUser,
   deleteUser,
   getPets,
+  createPet,
+  getCoordsForAddress,
 };

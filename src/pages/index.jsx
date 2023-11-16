@@ -4,7 +4,7 @@ import Users from "./Users";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PageNotFound from "./PageNotFound";
-import User from "./User";
+import User from "./PetRegister";
 import Booking from "./Booking";
 import Checkin from "./Checkin";
 

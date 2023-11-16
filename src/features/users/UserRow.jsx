@@ -29,6 +29,7 @@ function UserRow({ user }) {
   return (
     <Table.Row>
       <Img src={avatar} alt={`Avatar of ${firstName} ${lastName}`} />
+      <div>{userId}</div>
       <div>{firstName}</div>
       <div>{lastName}</div>
       <div>{email}</div>

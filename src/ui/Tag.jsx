@@ -6,8 +6,9 @@ const Tag = styled.span`
   text-transform: uppercase;
   font-size: 1.3rem;
   font-weight: 600;
-  padding: 0.6rem 1.4rem;
+  padding: 0.6rem 1.4em;
   border-radius: 100px;
+  white-space: nowrap;
 
   /* Make these dynamic, based on the received prop */
   color: var(--color-${props => props.type}-700);

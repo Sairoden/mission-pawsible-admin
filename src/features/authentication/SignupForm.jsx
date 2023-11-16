@@ -1,6 +1,9 @@
+// Styles
+import styled from "styled-components";
+
 // UI Components
 import { useForm } from "react-hook-form";
-import { Button, Form, Input, FormRow } from "../../ui";
+import { Button, Form, Input, FormRow, Select } from "../../ui";
 
 // Hooks
 import { useSignup } from "./useSignup";
@@ -92,5 +95,9 @@ function SignupForm() {
     </Form>
   );
 }
+
+const FormSelect = styled(Select)`
+  width: 100%;
+`;
 
 export default SignupForm;

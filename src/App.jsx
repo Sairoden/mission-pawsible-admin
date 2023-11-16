@@ -68,7 +68,6 @@ function App() {
               path: "/register",
               element: <User />,
             },
-
             {
               path: "/account",
               element: <Account />,

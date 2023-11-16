@@ -8,9 +8,9 @@ function BookingTableOperations() {
         filterField="status"
         options={[
           { value: "all", label: "All" },
-          { value: "lost", label: "Lost Pets" },
-          { value: "found", label: "Found Pets" },
-          { value: "reunited", label: "Reunited Pets" },
+          { value: "Lost", label: "Lost Pets" },
+          { value: "Found", label: "Found Pets" },
+          { value: "Reunited", label: "Reunited Pets" },
         ]}
       />
     </TableOperations>

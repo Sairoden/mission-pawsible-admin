@@ -33,13 +33,16 @@ function BookingRow({
     location,
     date,
     status,
+    lat,
+    lng,
     users: { firstName, lastName, email },
   },
+  pet,
 }) {
   const statusToTagName = {
-    lost: "red",
-    found: "green",
-    reunited: "blue",
+    Lost: "red",
+    Found: "green",
+    Reunited: "blue",
   };
 
   const navigate = useNavigate();
@@ -48,12 +51,14 @@ function BookingRow({
 
   return (
     <Table.Row>
-      <Cabin>1</Cabin>
+      <Cabin>{petId}</Cabin>
       <Stacked>
         <span>
           {firstName} {lastName}
         </span>
-        <span>{email}</span>
+        <span>
+          <a href={`mailto:${email}`}>{email}</a>
+        </span>
       </Stacked>
       <Stacked>
         <span>{petName}</span>
@@ -69,7 +74,13 @@ function BookingRow({
       </Stacked>
       <Stacked>
         <span>{format(new Date(date), "MMM dd yyyy")}</span>
-        <span>{location}</span>
+        <a
+          href={`https://www.google.com/maps/@${lat},${lng}`}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span>{location}</span>
+        </a>
       </Stacked>
       <Tag type={statusToTagName[status]}>{status} Pet</Tag>
 

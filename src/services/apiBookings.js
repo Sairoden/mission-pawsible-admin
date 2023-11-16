@@ -9,7 +9,7 @@ export async function getPets({ filter, page }) {
     let query = supabase
       .from("pets")
       .select(
-        "id, petName, petType, breed, color, size, gender, location, microchipped, date, message, description, status, users(firstName, lastName, email)",
+        "id, petName, petType, breed, color, size, gender, location, microchipped, date, message, description, status, lat, lng, users(firstName, lastName, email)",
         { count: "exact" }
       );
 
