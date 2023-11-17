@@ -1,99 +1,128 @@
 // React & Libraries
-import { format, isToday } from "date-fns";
+import { format } from "date-fns";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 // Styles
 import styled from "styled-components";
 import {
   HiOutlineChatBubbleBottomCenterText,
   HiOutlineCheckCircle,
-  HiOutlineCurrencyDollar,
-  HiOutlineHomeModern,
+  HiOutlineBookmark,
+  HiOutlineXCircle,
+  HiOutlineTag,
+  HiUser,
+  HiOutlineScale,
+  HiOutlinePaintBrush,
+  HiOutlineFlag,
+  HiOutlineFunnel,
+  HiOutlineHome,
+  HiOutlineMegaphone,
 } from "react-icons/hi2";
 
-// Utilities
-import { formatDistanceFromNow, formatCurrency } from "../../utils";
-
 // UI Components
-import { DataItem, Flag } from "../../ui";
+import { DataItem } from "../../ui";
 
-function BookingDataBox({ booking = {} }) {
+function BookingDataBox({ pet = {} }) {
   const {
-    created_at,
-    startDate,
-    endDate,
-    numNights,
-    numGuests,
-    cabinPrice,
-    extrasPrice,
-    totalPrice,
-    hasBreakfast,
-    observations,
-    isPaid,
-    guests: { fullName: guestName, email, country, countryFlag, nationalID },
-    cabins: { name: cabinName },
-  } = booking;
+    petName,
+    petType,
+    breed,
+    color,
+    size,
+    gender,
+    location,
+    microchipped,
+    date,
+    message,
+    description,
+    images,
+
+    users: { firstName, lastName, email },
+  } = pet;
+
+  const imageSlides = images.map(image => {
+    return {
+      original: image,
+      thumbnail: image,
+    };
+  });
 
   return (
     <StyledBookingDataBox>
       <Header>
         <div>
-          <HiOutlineHomeModern />
+          <HiOutlineBookmark />
           <p>
-            {numNights} nights in Cabin <span>{cabinName}</span>
+            Pet Name
+            <span>&bull;</span>
+            <span>{petName}</span>
           </p>
         </div>
 
-        <p>
-          {format(new Date(startDate), "EEE, MMM dd yyyy")} (
-          {isToday(new Date(startDate))
-            ? "Today"
-            : formatDistanceFromNow(startDate)}
-          ) &mdash; {format(new Date(endDate), "EEE, MMM dd yyyy")}
-        </p>
+        <p>{format(new Date(date), "EEEE - MMMM dd, yyyy")}</p>
       </Header>
 
       <Section>
         <Guest>
-          {countryFlag && <Flag src={countryFlag} alt={`Flag of ${country}`} />}
+          <HiUser />
           <p>
-            {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ""}
+            {firstName} {lastName}
           </p>
           <span>&bull;</span>
           <p>{email}</p>
-          <span>&bull;</span>
-          <p>National ID {nationalID}</p>
         </Guest>
 
-        {observations && (
-          <DataItem
-            icon={<HiOutlineChatBubbleBottomCenterText />}
-            label="Observations"
-          >
-            {observations}
-          </DataItem>
-        )}
-
-        <DataItem icon={<HiOutlineCheckCircle />} label="Breakfast included?">
-          {hasBreakfast ? "Yes" : "No"}
+        <DataItem icon={<HiOutlineTag />} label="Pet Type:">
+          {petType}
         </DataItem>
 
-        <Price isPaid={isPaid}>
-          <DataItem icon={<HiOutlineCurrencyDollar />} label={`Total price`}>
-            {formatCurrency(totalPrice)}
+        <DataItem icon={<HiOutlineFlag />} label="Breed:">
+          {breed}
+        </DataItem>
 
-            {hasBreakfast &&
-              ` (${formatCurrency(cabinPrice)} cabin + ${formatCurrency(
-                extrasPrice
-              )} breakfast)`}
-          </DataItem>
+        <DataItem icon={<HiOutlinePaintBrush />} label="Color:">
+          {color}
+        </DataItem>
 
-          <p>{isPaid ? "Paid" : "Will pay at property"}</p>
-        </Price>
+        <DataItem icon={<HiOutlineScale />} label="Size:">
+          {size}
+        </DataItem>
+
+        <DataItem icon={<HiOutlineFunnel />} label="Gender:">
+          {gender}
+        </DataItem>
+
+        <DataItem
+          icon={
+            microchipped === "Yes" ? (
+              <HiOutlineCheckCircle />
+            ) : (
+              <HiOutlineXCircle />
+            )
+          }
+          label="Microchipped?"
+        >
+          {microchipped}
+        </DataItem>
+
+        <DataItem icon={<HiOutlineHome />} label="Location:">
+          {location}
+        </DataItem>
+
+        <DataItem icon={<HiOutlineMegaphone />} label="Description:">
+          {description}
+        </DataItem>
+
+        <DataItem
+          icon={<HiOutlineChatBubbleBottomCenterText />}
+          label="Message:"
+        >
+          {message}
+        </DataItem>
+
+        <ImageGallery items={imageSlides} showPlayButton={false} />
       </Section>
-
-      <Footer>
-        <p>Booked {format(new Date(created_at), "EEE, MMM dd yyyy, p")}</p>
-      </Footer>
     </StyledBookingDataBox>
   );
 }
@@ -180,13 +209,6 @@ const Price = styled.div`
     width: 2.4rem;
     color: currentColor !important;
   }
-`;
-
-const Footer = styled.footer`
-  padding: 1.6rem 4rem;
-  font-size: 1.2rem;
-  color: var(--color-grey-500);
-  text-align: right;
 `;
 
 export default BookingDataBox;

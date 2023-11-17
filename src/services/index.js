@@ -10,7 +10,6 @@ import {
   getStaysTodayActivity,
   updateBooking,
   deleteBooking,
-  getPets,
 } from "./apiBookings";
 
 // USERS
@@ -26,7 +25,13 @@ import {
 } from "./apiAuth";
 
 // PETS
-import { createPet } from "./apiPets";
+import {
+  getAllPets,
+  getSinglePet,
+  createPet,
+  updatePetStatus,
+  deletePet,
+} from "./apiPets";
 
 // GEOCODING
 import { getCoordsForAddress } from "./apiLocation";
@@ -49,7 +54,10 @@ export {
   getUsers,
   editUser,
   deleteUser,
-  getPets,
+  getAllPets,
+  getSinglePet,
   createPet,
+  updatePetStatus,
+  deletePet,
   getCoordsForAddress,
 };

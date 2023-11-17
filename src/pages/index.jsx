@@ -1,21 +1,23 @@
 import Account from "./Account";
-import Bookings from "./Bookings";
+import Pets from "./Pets";
 import Users from "./Users";
 import Dashboard from "./Dashboard";
 import Login from "./Login";
 import PageNotFound from "./PageNotFound";
-import User from "./PetRegister";
-import Booking from "./Booking";
+import Pet from "./Pet";
 import Checkin from "./Checkin";
+import PetRegister from "./PetRegister";
+import PetEdit from "./PetEdit";
 
 export {
   Account,
-  Bookings,
+  Pets,
   Users,
   Dashboard,
   Login,
   PageNotFound,
-  User,
-  Booking,
+  Pet,
   Checkin,
+  PetEdit,
+  PetRegister,
 };

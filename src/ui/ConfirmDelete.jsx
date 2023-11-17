@@ -9,12 +9,19 @@ function ConfirmDelete({
   handleConfirm,
   disabled,
   handleCloseModal,
+  resourceStatus = "delete",
 }) {
   return (
     <StyledConfirmDelete>
-      <Heading as="h3">Delete {resourceName}</Heading>
+      <Heading as="h3">
+        {resourceStatus === "reunite" ? "Reunite" : "Delete"} {resourceName}
+      </Heading>
 
-      <p>Are you sure you want to delete this {resourceName} permanently?</p>
+      <p>
+        Are you sure you want to{" "}
+        {resourceStatus === "reunite" ? "reunite" : "delete"} this{" "}
+        {resourceName} permanently?
+      </p>
 
       <div>
         <Button
@@ -24,8 +31,12 @@ function ConfirmDelete({
         >
           Cancel
         </Button>
-        <Button variation="danger" disabled={disabled} onClick={handleConfirm}>
-          Delete
+        <Button
+          variation={resourceStatus === "reunite" ? "primary" : "danger"}
+          disabled={disabled}
+          onClick={handleConfirm}
+        >
+          {resourceStatus === "reunite" ? "Reunite" : "Delete"}
         </Button>
       </div>
     </StyledConfirmDelete>

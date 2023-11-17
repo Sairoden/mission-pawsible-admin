@@ -1,8 +1,8 @@
 // Features Components
 import { BookingDetail } from "../features";
 
-function Booking() {
+function Pet() {
   return <BookingDetail />;
 }
 
-export default Booking;
+export default Pet;

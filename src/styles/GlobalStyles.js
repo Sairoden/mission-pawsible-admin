@@ -184,7 +184,16 @@ img {
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
 
+.image-gallery {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  height: auto;
+}
 
+.image-gallery-left-nav .image-gallery-svg, .image-gallery-right-nav .image-gallery-svg {
+  width: 4rem;
+}
 
 `;
 

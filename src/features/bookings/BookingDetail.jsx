@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 // Styles
 import styled from "styled-components";
-import { HiArrowDownOnSquare, HiArrowUpOnSquare } from "react-icons/hi2";
+import { HiArrowUpOnSquare } from "react-icons/hi2";
 
 // Features Components
 import { BookingDataBox } from "../index";
@@ -24,72 +24,75 @@ import {
 
 // Hooks
 import { useMoveBack } from "../../hooks";
-import { useBooking } from "./useBooking";
-import { useCheckout } from "../check-in-out/useCheckout";
-import { useDeleteBooking } from "./useDeleteBooking";
+import { usePet } from "./usePet";
+import { useDeletePet } from "./useDeletePet";
+import { useUpdatePetStatus } from "./useUpdatePetStatus";
 
 function BookingDetail() {
-  const { booking, isLoading } = useBooking();
-  const { checkout, isCheckingOut } = useCheckout();
-  const { deleteBooking, isDeleting } = useDeleteBooking();
+  const { pet, isLoading } = usePet();
+  const { isDeleting, deletePet } = useDeletePet();
+  const { updatePetStatus, isUpdating } = useUpdatePetStatus();
 
   const moveBack = useMoveBack();
   const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
-  if (!booking) return <Empty resourceName="booking" />;
+  if (!pet) return <Empty resourceName="pet" />;
 
-  const { status, id: bookingId } = booking;
+  const { status, id: petId } = pet;
 
   const statusToTagName = {
-    unconfirmed: "blue",
-    "checked-in": "green",
-    "checked-out": "silver",
+    Lost: "red",
+    Found: "green",
+    Reunited: "blue",
   };
 
   return (
     <>
       <Row type="horizontal">
         <HeadingGroup>
-          <Heading as="h1">Booking #{bookingId}</Heading>
-          <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
+          <Heading as="h1">Pet #{petId}</Heading>
+          <Tag type={statusToTagName[status]}>{status} Pet</Tag>
         </HeadingGroup>
         <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
       </Row>
 
-      <BookingDataBox booking={booking} />
+      {/* RENDER INPUT HERE */}
+      <BookingDataBox pet={pet} />
 
       <ButtonGroup>
-        {status === "unconfirmed" && (
-          <Button
-            icon={<HiArrowDownOnSquare />}
-            onClick={() => navigate(`/pets/${bookingId}`)}
-          >
-            Check in
-          </Button>
-        )}
+        {status !== "Reunited" && (
+          <Modal>
+            <Modal.Open opens="reunite">
+              <Button>Reunite Pet</Button>
+            </Modal.Open>
 
-        {status === "checked-in" && (
-          <Button
-            icon={<HiArrowUpOnSquare />}
-            onClick={() => checkout(bookingId)}
-            disabled={isCheckingOut}
-          >
-            Check out
-          </Button>
+            <Modal.Window name="reunite">
+              <ConfirmDelete
+                resourceName="pet"
+                resourceStatus="reunite"
+                disabled={isUpdating}
+                handleConfirm={() =>
+                  updatePetStatus(petId, {
+                    onSuccess: () => navigate(-1),
+                  })
+                }
+              />
+            </Modal.Window>
+          </Modal>
         )}
 
         <Modal>
           <Modal.Open opens="delete">
-            <Button variation="danger">Delete booking</Button>
+            <Button variation="danger">Delete Pet</Button>
           </Modal.Open>
 
           <Modal.Window name="delete">
             <ConfirmDelete
-              resourceName="booking"
+              resourceName="pet"
               disabled={isDeleting}
               handleConfirm={() =>
-                deleteBooking(bookingId, {
+                deletePet(petId, {
                   onSuccess: () => navigate(-1),
                 })
               }

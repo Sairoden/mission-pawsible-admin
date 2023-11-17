@@ -1,16 +1,16 @@
 // Features Components
-import { RegisterPet } from "../features";
+import { PetEditForm } from "../features";
 
 // UI Components
 import { Heading } from "../ui";
 
-function User() {
+function PetEdit() {
   return (
     <>
-      <Heading as="h1">Create a new user</Heading>
-      <RegisterPet />
+      <Heading as="h1">Edit your pet</Heading>
+      <PetEditForm />
     </>
   );
 }
 
-export default User;
+export default PetEdit;

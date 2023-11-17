@@ -18,11 +18,13 @@ import {
 // Hooks
 import { useRegisterPet } from "./useRegisterPet";
 
-function RegisterPet() {
+function PetRegisterForm() {
   const { register, formState, setValue, getValues, handleSubmit, reset } =
     useForm();
   const { errors } = formState;
   const { registerPet, isCreating } = useRegisterPet();
+
+  const today = new Date().toISOString().split("T")[0];
 
   const onSubmit = data => {
     registerPet(
@@ -51,7 +53,14 @@ function RegisterPet() {
           type="text"
           id="petName"
           disabled={isCreating}
-          {...register("petName", { required: "This field is required" })}
+          {...register("petName", {
+            required: "This field is required",
+            onChange: e => {
+              e.target.value =
+                e.target.value.charAt(0).toUpperCase() +
+                e.target.value.slice(1);
+            },
+          })}
         />
       </FormRow>
 
@@ -96,7 +105,14 @@ function RegisterPet() {
           type="text"
           id="color"
           disabled={isCreating}
-          {...register("color", { required: "This field is required" })}
+          {...register("color", {
+            required: "This field is required",
+            onChange: e => {
+              e.target.value =
+                e.target.value.charAt(0).toUpperCase() +
+                e.target.value.slice(1);
+            },
+          })}
         />
       </FormRow>
 
@@ -160,6 +176,7 @@ function RegisterPet() {
           type="date"
           id="date"
           disabled={isCreating}
+          max={today}
           {...register("date", { required: "This field is required" })}
         />
       </FormRow>
@@ -172,6 +189,11 @@ function RegisterPet() {
           disabled={isCreating}
           {...register("location", {
             required: "This field is required",
+            onChange: e => {
+              e.target.value =
+                e.target.value.charAt(0).toUpperCase() +
+                e.target.value.slice(1);
+            },
           })}
         />
       </FormRow>
@@ -184,6 +206,11 @@ function RegisterPet() {
           disabled={isCreating}
           {...register("description", {
             required: "This field is required",
+            onChange: e => {
+              e.target.value =
+                e.target.value.charAt(0).toUpperCase() +
+                e.target.value.slice(1);
+            },
           })}
         />
       </FormRow>
@@ -196,6 +223,11 @@ function RegisterPet() {
           disabled={isCreating}
           {...register("message", {
             required: "This field is required",
+            onChange: e => {
+              e.target.value =
+                e.target.value.charAt(0).toUpperCase() +
+                e.target.value.slice(1);
+            },
           })}
         />
       </FormRow>
@@ -208,7 +240,6 @@ function RegisterPet() {
             { value: "", label: "Select one" },
             { value: "Lost", label: "Lost" },
             { value: "Found", label: "Found" },
-            { value: "Reunited", label: "Reunited" },
           ]}
           {...register("status", { required: "This field is required" })}
           value={getValues("status")}
@@ -246,4 +277,4 @@ const FormSelect = styled(Select)`
   width: 100%;
 `;
 
-export default RegisterPet;
+export default PetRegisterForm;

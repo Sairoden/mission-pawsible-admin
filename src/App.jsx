@@ -15,12 +15,13 @@ import GlobalStyles from "./styles/GlobalStyles";
 import {
   Dashboard,
   Account,
-  Bookings,
+  Pets,
   Users,
   Login,
-  User,
   PageNotFound,
-  Booking,
+  Pet,
+  PetEdit,
+  PetRegister,
 } from "./pages";
 
 // UI Components
@@ -54,11 +55,15 @@ function App() {
             },
             {
               path: "/pets",
-              element: <Bookings />,
+              element: <Pets />,
             },
             {
-              path: "/pets/:bookingId",
-              element: <Booking />,
+              path: "/pets/:petId",
+              element: <Pet />,
+            },
+            {
+              path: "/pets/edit/:petId",
+              element: <PetEdit />,
             },
             {
               path: "/users",
@@ -66,7 +71,7 @@ function App() {
             },
             {
               path: "/register",
-              element: <User />,
+              element: <PetRegister />,
             },
             {
               path: "/account",

@@ -12,7 +12,8 @@ import BookingDetail from "./bookings/BookingDetail";
 import BookingRow from "./bookings/BookingRow";
 import BookingTable from "./bookings/BookingTable";
 import BookingTableOperations from "./bookings/BookingTableOperations";
-import RegisterPet from "./bookings/RegisterPet";
+import PetRegisterForm from "./bookings/PetRegisterForm";
+import PetEditForm from "./bookings/PetEditForm";
 
 // Cabins
 import EditUserForm from "./users/EditUserForm";
@@ -70,5 +71,6 @@ export {
   SalesChart,
   DurationChart,
   TodayItem,
-  RegisterPet,
+  PetRegisterForm,
+  PetEditForm,
 };

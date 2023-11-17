@@ -8,6 +8,7 @@ import {
   HiArrowDownOnSquare,
   HiArrowUpOnSquare,
   HiEye,
+  HiPencil,
   HiTrash,
 } from "react-icons/hi2";
 
@@ -16,10 +17,7 @@ import { Tag, Table, Menus, Modal, ConfirmDelete } from "../../ui";
 
 // Hooks
 import { useCheckout } from "../check-in-out/useCheckout";
-import { useDeleteBooking } from "./useDeleteBooking";
-
-// Utilities
-import { formatCurrency, formatDistanceFromNow } from "../../utils";
+import { useDeletePet } from "./useDeletePet";
 
 function BookingRow({
   pet: {
@@ -37,7 +35,6 @@ function BookingRow({
     lng,
     users: { firstName, lastName, email },
   },
-  pet,
 }) {
   const statusToTagName = {
     Lost: "red",
@@ -47,8 +44,7 @@ function BookingRow({
 
   const navigate = useNavigate();
   const { checkout, isCheckingOut } = useCheckout();
-  const { deleteBooking, isDeleting } = useDeleteBooking();
-
+  const { isDeleting, deletePet } = useDeletePet();
   return (
     <Table.Row>
       <Cabin>{petId}</Cabin>
@@ -95,6 +91,13 @@ function BookingRow({
               See details
             </Menus.Button>
 
+            <Menus.Button
+              icon={<HiPencil />}
+              onClick={() => navigate(`/pets/edit/${petId}`)}
+            >
+              Edit
+            </Menus.Button>
+
             <Modal.Open opens="delete">
               <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
             </Modal.Open>
@@ -103,9 +106,9 @@ function BookingRow({
 
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="booking"
+            resourceName="pet"
             disabled={isDeleting}
-            handleConfirm={() => deleteBooking(petId)}
+            handleConfirm={() => deletePet(petId)}
           />
         </Modal.Window>
       </Modal>

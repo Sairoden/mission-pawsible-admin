@@ -4,7 +4,7 @@ import { BookingTable, BookingTableOperations } from "../features";
 // UI Components
 import { Heading, Row } from "../ui";
 
-function Bookings() {
+function Pets() {
   return (
     <>
       <Row type="horizontal">
@@ -17,4 +17,4 @@ function Bookings() {
   );
 }
 
-export default Bookings;
+export default Pets;

@@ -3,7 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 
 // Services
-import { getPets } from "../../services";
+import { getAllPets } from "../../services";
 
 // Utilities
 import { PAGE_SIZE } from "../../utils";
@@ -28,7 +28,7 @@ export const usePets = () => {
     isLoading,
   } = useQuery({
     queryKey: ["pets", filter, page],
-    queryFn: () => getPets({ filter, page }),
+    queryFn: () => getAllPets({ filter, page }),
   });
 
   // PRE-FETCHING
@@ -37,13 +37,13 @@ export const usePets = () => {
   if (page < pageCount)
     queryClient.prefetchQuery({
       queryKey: ["pets", filter, page + 1],
-      queryFn: () => getPets({ filter, page: page + 1 }),
+      queryFn: () => getAllPets({ filter, page: page + 1 }),
     });
 
   if (page > 1)
     queryClient.prefetchQuery({
       queryKey: ["pets", filter, page - 1],
-      queryFn: () => getPets({ filter, page: page - 1 }),
+      queryFn: () => getAllPets({ filter, page: page - 1 }),
     });
 
   return { pets, isLoading, error, count };
