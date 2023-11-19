@@ -13,7 +13,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
 
   const { id: editId, ...editValues } = userToEdit;
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
+  const { register, handleSubmit, reset, formState } = useForm({
     defaultValues: editId ? editValues : {},
   });
   const { errors } = formState;
@@ -119,20 +119,3 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
 }
 
 export default EditUserForm;
-
-{/* <FormRow label="Pet Type" error={errors?.petType?.message}>
-<FormSelect
-  id="petType"
-  options={[
-    { value: "", label: "Select one" },
-    { value: "Dog", label: "Dog" },
-    { value: "Cat", label: "Cat" },
-  ]}
-  {...register("petType")}
-  value={getValues("petType")}
-  onChange={e => {
-    const selectedValue = e.target.value;
-    setValue("petType", selectedValue);
-  }}
-/>
-</FormRow> */}

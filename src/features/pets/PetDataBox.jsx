@@ -2,6 +2,7 @@
 import { format } from "date-fns";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
+import toast from "react-hot-toast";
 
 // Styles
 import styled from "styled-components";
@@ -21,10 +22,15 @@ import {
 } from "react-icons/hi2";
 
 // UI Components
-import { DataItem } from "../../ui";
+import { Button, DataItem, Modal } from "../../ui";
+import { useEffect, useState } from "react";
 
-function BookingDataBox({ pet = {} }) {
+// Hooks
+import { useDeletePetImage } from "./useDeletePetImage";
+
+function PetDataBox({ pet = {} }) {
   const {
+    id,
     petName,
     petType,
     breed,
@@ -40,16 +46,38 @@ function BookingDataBox({ pet = {} }) {
 
     users: { firstName, lastName, email },
   } = pet;
+  const { deletePetImage, isDeleting } = useDeletePetImage();
 
-  const imageSlides = images.map(image => {
-    return {
-      original: image,
-      thumbnail: image,
-    };
-  });
+  const [imageSlides, setImageSlides] = useState(
+    images.map(image => {
+      return {
+        original: image,
+        thumbnail: image,
+      };
+    })
+  );
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleDelete = () => {
+    if (imageSlides.length === 1)
+      return toast.error("You can't delete anymore ❌");
+
+    const updatedImageSlides = imageSlides.filter(
+      (_, index) => index !== currentIndex
+    );
+
+    setImageSlides(updatedImageSlides);
+
+    deletePetImage({ imageSlides: updatedImageSlides, id });
+  };
+
+  const handleSlide = index => {
+    setCurrentIndex(index);
+  };
 
   return (
-    <StyledBookingDataBox>
+    <StyledPetDataBox>
       <Header>
         <div>
           <HiOutlineBookmark />
@@ -121,13 +149,33 @@ function BookingDataBox({ pet = {} }) {
           {message}
         </DataItem>
 
-        <ImageGallery items={imageSlides} showPlayButton={false} />
+        <ImageGallery
+          items={imageSlides}
+          showPlayButton={false}
+          onSlide={handleSlide}
+        />
+
+        {imageSlides.length > 0 && (
+          <Button
+            disabled={isDeleting}
+            variation="danger"
+            onClick={handleDelete}
+            style={{
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "2rem",
+            }}
+          >
+            Delete Image
+          </Button>
+        )}
       </Section>
-    </StyledBookingDataBox>
+    </StyledPetDataBox>
   );
 }
 
-const StyledBookingDataBox = styled.section`
+const StyledPetDataBox = styled.section`
   /* BOX */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
@@ -211,4 +259,4 @@ const Price = styled.div`
   }
 `;
 
-export default BookingDataBox;
+export default PetDataBox;

@@ -15,6 +15,9 @@ import {
   FileInput,
 } from "../../ui";
 
+// Utilities
+import { inputFormat } from "../../utils";
+
 // Hooks
 import { useRegisterPet } from "./useRegisterPet";
 
@@ -27,6 +30,12 @@ function PetRegisterForm() {
   const today = new Date().toISOString().split("T")[0];
 
   const onSubmit = data => {
+    data.petName = inputFormat(data.petName);
+    data.color = inputFormat(data.color);
+    data.location = inputFormat(data.location);
+    data.description = inputFormat(data.description);
+    data.message = inputFormat(data.message);
+
     registerPet(
       { ...data },
       {

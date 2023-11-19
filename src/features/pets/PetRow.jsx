@@ -1,25 +1,18 @@
 // React & Libraries
-import { format, isToday } from "date-fns";
+import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
 // Styles
 import styled from "styled-components";
-import {
-  HiArrowDownOnSquare,
-  HiArrowUpOnSquare,
-  HiEye,
-  HiPencil,
-  HiTrash,
-} from "react-icons/hi2";
+import { HiEye, HiPencil, HiTrash } from "react-icons/hi2";
 
 // UI Components
 import { Tag, Table, Menus, Modal, ConfirmDelete } from "../../ui";
 
 // Hooks
-import { useCheckout } from "../check-in-out/useCheckout";
 import { useDeletePet } from "./useDeletePet";
 
-function BookingRow({
+function PetRow({
   pet: {
     id: petId,
     petName,
@@ -43,8 +36,8 @@ function BookingRow({
   };
 
   const navigate = useNavigate();
-  const { checkout, isCheckingOut } = useCheckout();
   const { isDeleting, deletePet } = useDeletePet();
+
   return (
     <Table.Row>
       <Cabin>{petId}</Cabin>
@@ -71,7 +64,8 @@ function BookingRow({
       <Stacked>
         <span>{format(new Date(date), "MMM dd yyyy")}</span>
         <a
-          href={`https://www.google.com/maps/@${lat},${lng}`}
+          href={`https://www.google.com/maps/@${lat},${lng},18z?entry=ttu`}
+          // href={`https://www.google.com/maps/@52.0237,58.7074632,6.49z?entry=ttu`}
           target="_blank"
           rel="noreferrer"
         >
@@ -143,4 +137,4 @@ const Amount = styled.div`
   font-weight: 500;
 `;
 
-export default BookingRow;
+export default PetRow;

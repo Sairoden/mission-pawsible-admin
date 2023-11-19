@@ -29,8 +29,10 @@ import {
   getAllPets,
   getSinglePet,
   createPet,
+  updatePet,
   updatePetStatus,
   deletePet,
+  deletePetImage,
 } from "./apiPets";
 
 // GEOCODING
@@ -57,7 +59,9 @@ export {
   getAllPets,
   getSinglePet,
   createPet,
+  updatePet,
   updatePetStatus,
   deletePet,
+  deletePetImage,
   getCoordsForAddress,
 };

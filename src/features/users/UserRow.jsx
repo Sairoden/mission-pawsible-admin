@@ -32,7 +32,9 @@ function UserRow({ user }) {
       <div>{userId}</div>
       <div>{firstName}</div>
       <div>{lastName}</div>
-      <div>{email}</div>
+      <div>
+        <a href={`mailto:${email}`}>{email}</a>
+      </div>
       <div>{contactNumber}</div>
       <div>{address}</div>
       <div>
@@ -71,7 +73,7 @@ function UserRow({ user }) {
 const Img = styled.img`
   display: block;
   width: 6.4rem;
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 3 / 3;
   object-fit: cover;
   object-position: center;
   transform: scale(2) translateX(15px);

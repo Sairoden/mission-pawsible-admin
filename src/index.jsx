@@ -19,9 +19,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 
 // TO DO
-// 0. REFACTOR CABINS
-// 1. PETS LIST
-// 1.2 DELETE PET
-// 2. REGISTER A PET
-// 2.2 EDIT PET
-// 3. DASHBOARD
+// 1. REGISTER/EDIT FORM
+// 2. Add more breed
+// 2.1 If Cat -> Render Breed for Cat -> DISABLE If there is NO PET TYPE
+// 2.2 If Dog -> Render Breed for Dog -> DISABLE If there is NO PET TYPE
+// 3. Add more size
+

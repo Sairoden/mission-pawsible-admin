@@ -6,14 +6,14 @@ import UserAvatar from "./authentication/UserAvatar";
 import UpdatePasswordForm from "./authentication/UpdatePasswordForm";
 import UpdateUserDataForm from "./authentication/UpdateUserDataForm";
 
-// Bookings
-import BookingDataBox from "./bookings/BookingDataBox";
-import BookingDetail from "./bookings/BookingDetail";
-import BookingRow from "./bookings/BookingRow";
-import BookingTable from "./bookings/BookingTable";
-import BookingTableOperations from "./bookings/BookingTableOperations";
-import PetRegisterForm from "./bookings/PetRegisterForm";
-import PetEditForm from "./bookings/PetEditForm";
+// Pets
+import PetDataBox from "./pets/PetDataBox";
+import PetDetail from "./pets/PetDetail";
+import PetRow from "./pets/PetRow";
+import PetTable from "./pets/PetTable";
+import PetTableOperations from "./pets/PetTableOperations";
+import PetRegisterForm from "./pets/PetRegisterForm";
+import PetEditForm from "./pets/PetEditForm";
 
 // Cabins
 import EditUserForm from "./users/EditUserForm";
@@ -22,7 +22,6 @@ import UserRow from "./users/UserRow";
 import UserTableOperations from "./users/UserTableOperations";
 
 // Check-in-out
-import CheckinBooking from "./check-in-out/CheckinBooking";
 import CheckoutButton from "./check-in-out/CheckoutButton";
 import Today from "./check-in-out/TodayActivity";
 import TodayItem from "./check-in-out/TodayItem";
@@ -36,11 +35,6 @@ import Stats from "./dashboard/Stats";
 import SalesChart from "./dashboard/SalesChart";
 import DurationChart from "./dashboard/DurationChart";
 
-// Guest
-// import CreateGuestForm from "./guests/CreateGuestForm";
-// import GuestList from "./guests/GuestList";
-// import GuestListItem from "./guests/GuestListItem";
-
 export {
   LoginForm,
   SignupForm,
@@ -48,22 +42,18 @@ export {
   UpdatePasswordForm,
   UpdateUserDataForm,
   Logout,
-  BookingDataBox,
-  BookingDetail,
-  BookingRow,
-  BookingTable,
-  BookingTableOperations,
+  PetDataBox,
+  PetDetail,
+  PetRow,
+  PetTable,
+  PetTableOperations,
   EditUserForm,
-  CheckinBooking,
   CheckoutButton,
   Today,
   DashboardBox,
   DashboardFilter,
   DashboardLayout,
   Stat,
-  // CreateGuestForm,
-  // GuestList,
-  // GuestListItem,
   UserTable,
   UserRow,
   UserTableOperations,

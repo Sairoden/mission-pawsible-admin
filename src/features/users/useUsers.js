@@ -1,18 +1,43 @@
 // React & Libraries
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
 
 // Services
 import { getUsers } from "../../services";
 
+// Utilities
+import { PAGE_SIZE } from "../../utils";
+
 export const useUsers = () => {
+  const queryClient = useQueryClient();
+  const [searchParams] = useSearchParams();
+
+  // PAGINATION
+  const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
+
   const {
-    data: users,
-    isLoading,
+    data: { data: users, count } = {},
     error,
+    isLoading,
   } = useQuery({
-    queryKey: ["users"],
-    queryFn: getUsers,
+    queryKey: ["users", page],
+    queryFn: () => getUsers({ page }),
   });
 
-  return { users, isLoading, error };
+  // PRE-FETCHING
+  const pageCount = Math.ceil(count / PAGE_SIZE);
+
+  if (page < pageCount)
+    queryClient.prefetchQuery({
+      queryKey: ["users", page + 1],
+      queryFn: () => getUsers({ page: page + 1 }),
+    });
+
+  if (page > 1)
+    queryClient.prefetchQuery({
+      queryKey: ["users", page - 1],
+      queryFn: () => getUsers({ page: page - 1 }),
+    });
+
+  return { users, isLoading, error, count };
 };

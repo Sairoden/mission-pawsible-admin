@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 
 // Styles
 import styled from "styled-components";
-import { HiArrowUpOnSquare } from "react-icons/hi2";
 
 // Features Components
-import { BookingDataBox } from "../index";
+import { PetDataBox } from "../index";
 
 // UI Components
 import {
@@ -28,7 +27,7 @@ import { usePet } from "./usePet";
 import { useDeletePet } from "./useDeletePet";
 import { useUpdatePetStatus } from "./useUpdatePetStatus";
 
-function BookingDetail() {
+function PetDetail() {
   const { pet, isLoading } = usePet();
   const { isDeleting, deletePet } = useDeletePet();
   const { updatePetStatus, isUpdating } = useUpdatePetStatus();
@@ -58,7 +57,7 @@ function BookingDetail() {
       </Row>
 
       {/* RENDER INPUT HERE */}
-      <BookingDataBox pet={pet} />
+      <PetDataBox pet={pet} />
 
       <ButtonGroup>
         {status !== "Reunited" && (
@@ -114,4 +113,4 @@ const HeadingGroup = styled.div`
   align-items: center;
 `;
 
-export default BookingDetail;
+export default PetDetail;

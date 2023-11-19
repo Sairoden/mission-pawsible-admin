@@ -1,7 +1,7 @@
 // UI Components
 import { Filter, TableOperations } from "../../ui";
 
-function BookingTableOperations() {
+function PetTableOperations() {
   return (
     <TableOperations>
       <Filter
@@ -17,4 +17,4 @@ function BookingTableOperations() {
   );
 }
 
-export default BookingTableOperations;
+export default PetTableOperations;

@@ -1,8 +1,8 @@
 // Features Components
-import { BookingDetail } from "../features";
+import { PetDetail } from "../features";
 
 function Pet() {
-  return <BookingDetail />;
+  return <PetDetail />;
 }
 
 export default Pet;

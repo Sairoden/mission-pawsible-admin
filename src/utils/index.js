@@ -3,6 +3,7 @@ import {
   formatDistanceFromNow,
   getToday,
   formatCurrency,
+  inputFormat,
 } from "./helpers";
 import { PAGE_SIZE } from "./constants";
 
@@ -12,4 +13,5 @@ export {
   getToday,
   formatCurrency,
   PAGE_SIZE,
+  inputFormat,
 };

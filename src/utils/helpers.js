@@ -28,3 +28,11 @@ export const formatCurrency = value =>
   new Intl.NumberFormat("en", { style: "currency", currency: "USD" }).format(
     value
   );
+
+export const inputFormat = input => {
+  let words = input.trim().split(" ");
+  let capitalizedInput = words
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(" ");
+  return capitalizedInput;
+};

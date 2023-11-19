@@ -5,17 +5,19 @@ import { useSearchParams } from "react-router-dom";
 import UserRow from "./UserRow";
 
 // UI Components
-import { Spinner, Table, Menus } from "../../ui";
+import { Spinner, Table, Menus, Pagination, Empty } from "../../ui";
 
 // Hooks
 import { useUsers } from "./useUsers";
 
 function UserTable() {
-  const { users, isLoading } = useUsers();
+  const { users, isLoading, count } = useUsers();
 
   const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
+
+  if (!users.length) return <Empty resourceName="users" />;
 
   // 2) SORT
   const sortBy = searchParams.get("sortBy") || "name-asc";
@@ -25,19 +27,21 @@ function UserTable() {
 
   if (field === "name") {
     if (direction === "asc")
-      sortedUsers = users.sort((a, b) =>
+      sortedUsers = users?.sort((a, b) =>
         a.firstName.localeCompare(b.firstName)
       );
     else
-      sortedUsers = users.sort((a, b) =>
+      sortedUsers = users?.sort((a, b) =>
         b.firstName.localeCompare(a.firstName)
       );
   } else {
     if (direction === "asc")
-      sortedUsers = users.sort((a, b) => a.lastName.localeCompare(b.lastName));
+      sortedUsers = users?.sort((a, b) => a.lastName.localeCompare(b.lastName));
     else
-      sortedUsers = users.sort((a, b) => b.lastName.localeCompare(a.lastName));
+      sortedUsers = users?.sort((a, b) => b.lastName.localeCompare(a.lastName));
   }
+
+  sortedUsers = sortedUsers ? sortedUsers : [];
 
   return (
     <Menus>
@@ -57,6 +61,10 @@ function UserTable() {
           data={sortedUsers}
           render={user => <UserRow user={user} key={user.id} />}
         />
+
+        <Table.Footer>
+          <Pagination count={count} />
+        </Table.Footer>
       </Table>
     </Menus>
   );

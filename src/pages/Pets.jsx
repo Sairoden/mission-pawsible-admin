@@ -1,5 +1,5 @@
 // Features Components
-import { BookingTable, BookingTableOperations } from "../features";
+import { PetTable, PetTableOperations } from "../features";
 
 // UI Components
 import { Heading, Row } from "../ui";
@@ -9,10 +9,10 @@ function Pets() {
     <>
       <Row type="horizontal">
         <Heading as="h1">All Pets</Heading>
-        <BookingTableOperations />
+        <PetTableOperations />
       </Row>
 
-      <BookingTable />
+      <PetTable />
     </>
   );
 }

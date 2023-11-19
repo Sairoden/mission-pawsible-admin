@@ -195,6 +195,14 @@ img {
   width: 4rem;
 }
 
+.delete-button {
+  display: none;
+}
+
+.delete-button.active {
+  display: block;
+}
+
 `;
 
 export default GlobalStyles;

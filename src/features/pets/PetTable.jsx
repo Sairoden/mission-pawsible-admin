@@ -1,5 +1,5 @@
 // Features Components
-import { BookingRow } from "../index";
+import { PetRow } from "../index";
 
 // UI Components
 import { Table, Menus, Empty, Spinner, Pagination } from "../../ui";
@@ -7,7 +7,7 @@ import { Table, Menus, Empty, Spinner, Pagination } from "../../ui";
 // Hooks
 import { usePets } from "./usePets";
 
-function BookingTable() {
+function PetTable() {
   let { isLoading, pets, count } = usePets();
 
   if (isLoading) return <Spinner />;
@@ -31,7 +31,7 @@ function BookingTable() {
 
         <Table.Body
           data={pets}
-          render={pet => <BookingRow key={pet.id} pet={pet} />}
+          render={pet => <PetRow key={pet.id} pet={pet} />}
         />
 
         <Table.Footer>
@@ -42,4 +42,4 @@ function BookingTable() {
   );
 }
 
-export default BookingTable;
+export default PetTable;
