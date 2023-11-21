@@ -12,6 +12,11 @@ export const useUsers = () => {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
+  // SORT
+  const sortByRaw = searchParams.get("sortBy") || "firstName-asc";
+  const [field, direction] = sortByRaw.split("-");
+  const sortBy = { field, direction };
+
   // PAGINATION
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
@@ -20,8 +25,8 @@ export const useUsers = () => {
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["users", page],
-    queryFn: () => getUsers({ page }),
+    queryKey: ["users", sortBy, page],
+    queryFn: () => getUsers({ page, sortBy }),
   });
 
   // PRE-FETCHING
@@ -29,14 +34,14 @@ export const useUsers = () => {
 
   if (page < pageCount)
     queryClient.prefetchQuery({
-      queryKey: ["users", page + 1],
-      queryFn: () => getUsers({ page: page + 1 }),
+      queryKey: ["users", sortBy, sortBy, page + 1],
+      queryFn: () => getUsers({ sortBy, page: page + 1 }),
     });
 
   if (page > 1)
     queryClient.prefetchQuery({
-      queryKey: ["users", page - 1],
-      queryFn: () => getUsers({ page: page - 1 }),
+      queryKey: ["users", sortBy, page - 1],
+      queryFn: () => getUsers({ sortBy, page: page - 1 }),
     });
 
   return { users, isLoading, error, count };

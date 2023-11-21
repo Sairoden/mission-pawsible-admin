@@ -4,7 +4,7 @@ import { supabase, supabaseUrl, getCoordsForAddress } from "./index";
 // Utilities
 import { PAGE_SIZE } from "../utils";
 
-export async function getAllPets({ filter, page }) {
+export async function getAllPets({ filter, page, sortBy }) {
   let query = supabase
     .from("pets")
     .select(
@@ -14,6 +14,13 @@ export async function getAllPets({ filter, page }) {
 
   // FILTER
   if (filter) query = query[filter.method || "eq"](filter.field, filter.value);
+
+  // SORT
+  if (sortBy) {
+    query = query.order("id", {
+      ascending: sortBy === "Oldest",
+    });
+  }
 
   if (page) {
     const from = (page - 1) * PAGE_SIZE;

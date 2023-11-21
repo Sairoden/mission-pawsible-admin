@@ -6,10 +6,10 @@ function UserTableOperations() {
     <TableOperations>
       <SortBy
         options={[
-          { value: "name-asc", label: "Sort by First Name (A-Z)" },
-          { value: "name-desc", label: "Sort by First Name (Z-A)" },
-          { value: "last-asc", label: "Sort by Last Name (A-Z)" },
-          { value: "last-desc", label: "Sort by Last Name (Z-A)" },
+          { value: "firstName-asc", label: "Sort by First Name (A-Z)" },
+          { value: "firstName-desc", label: "Sort by First Name (Z-A)" },
+          { value: "lastName-asc", label: "Sort by Last Name (A-Z)" },
+          { value: "lastName-desc", label: "Sort by Last Name (Z-A)" },
         ]}
       />
     </TableOperations>

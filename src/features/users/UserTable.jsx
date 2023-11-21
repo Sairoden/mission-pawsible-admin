@@ -19,29 +19,29 @@ function UserTable() {
 
   if (!users.length) return <Empty resourceName="users" />;
 
-  // 2) SORT
-  const sortBy = searchParams.get("sortBy") || "name-asc";
-  const [field, direction] = sortBy.split("-");
+  // // SORT
+  // const sortBy = searchParams.get("sortBy") || "name-asc";
+  // const [field, direction] = sortBy.split("-");
 
-  let sortedUsers;
+  // let sortedUsers;
 
-  if (field === "name") {
-    if (direction === "asc")
-      sortedUsers = users?.sort((a, b) =>
-        a.firstName.localeCompare(b.firstName)
-      );
-    else
-      sortedUsers = users?.sort((a, b) =>
-        b.firstName.localeCompare(a.firstName)
-      );
-  } else {
-    if (direction === "asc")
-      sortedUsers = users?.sort((a, b) => a.lastName.localeCompare(b.lastName));
-    else
-      sortedUsers = users?.sort((a, b) => b.lastName.localeCompare(a.lastName));
-  }
+  // if (field === "name") {
+  //   if (direction === "asc")
+  //     sortedUsers = users?.sort((a, b) =>
+  //       a.firstName.localeCompare(b.firstName)
+  //     );
+  //   else
+  //     sortedUsers = users?.sort((a, b) =>
+  //       b.firstName.localeCompare(a.firstName)
+  //     );
+  // } else {
+  //   if (direction === "asc")
+  //     sortedUsers = users?.sort((a, b) => a.lastName.localeCompare(b.lastName));
+  //   else
+  //     sortedUsers = users?.sort((a, b) => b.lastName.localeCompare(a.lastName));
+  // }
 
-  sortedUsers = sortedUsers ? sortedUsers : [];
+  // sortedUsers = sortedUsers ? sortedUsers : [];
 
   return (
     <Menus>
@@ -58,7 +58,7 @@ function UserTable() {
         </Table.Header>
 
         <Table.Body
-          data={sortedUsers}
+          data={users}
           render={user => <UserRow user={user} key={user.id} />}
         />
 

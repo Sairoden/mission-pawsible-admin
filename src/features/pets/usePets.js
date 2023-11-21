@@ -19,6 +19,9 @@ export const usePets = () => {
       ? null
       : { field: "status", value: filterValue, method: "eq" };
 
+  // SORT
+  const sortBy = searchParams.get("sortBy") || "Oldest";
+
   // PAGINATION
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
@@ -27,8 +30,8 @@ export const usePets = () => {
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["pets", filter, page],
-    queryFn: () => getAllPets({ filter, page }),
+    queryKey: ["pets", filter, sortBy, page],
+    queryFn: () => getAllPets({ filter, sortBy, page }),
   });
 
   // PRE-FETCHING
@@ -36,14 +39,14 @@ export const usePets = () => {
 
   if (page < pageCount)
     queryClient.prefetchQuery({
-      queryKey: ["pets", filter, page + 1],
-      queryFn: () => getAllPets({ filter, page: page + 1 }),
+      queryKey: ["pets", filter, sortBy, page + 1],
+      queryFn: () => getAllPets({ filter, sortBy, page: page + 1 }),
     });
 
   if (page > 1)
     queryClient.prefetchQuery({
-      queryKey: ["pets", filter, page - 1],
-      queryFn: () => getAllPets({ filter, page: page - 1 }),
+      queryKey: ["pets", filter, sortBy, page - 1],
+      queryFn: () => getAllPets({ filter, sortBy, page: page - 1 }),
     });
 
   return { pets, isLoading, error, count };

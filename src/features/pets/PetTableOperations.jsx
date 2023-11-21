@@ -15,8 +15,8 @@ function PetTableOperations() {
       />
       <SortBy
         options={[
-          { value: "Newest", label: "Sort by Newest" },
           { value: "Oldest", label: "Sort by Oldest" },
+          { value: "Newest", label: "Sort by Newest" },
         ]}
       />
     </TableOperations>

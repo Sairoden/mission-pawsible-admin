@@ -4,8 +4,15 @@ import { supabase, supabaseAdmin, supabaseUrl } from "./index";
 // Utilities
 import { PAGE_SIZE } from "../utils";
 
-export const getUsers = async ({ page }) => {
+export const getUsers = async ({ page, sortBy }) => {
   let query = supabase.from("users").select("*", { count: "exact" });
+
+  // SORT
+  if (sortBy) {
+    query = query.order(sortBy.field, {
+      ascending: sortBy.direction === "asc",
+    });
+  }
 
   if (page) {
     const from = (page - 1) * PAGE_SIZE;
