@@ -1,5 +1,5 @@
 // Services
-import supabase, { supabaseUrl } from "./supabase";
+import { supabaseUrl, supabase } from "./supabase";
 
 export const signup = async ({
   firstName,
@@ -29,6 +29,8 @@ export const signup = async ({
 };
 
 export const login = async ({ email, password }) => {
+  supabase.auth.deleteUser;
+
   let { data: user, error: userError } = await supabase
     .from("users")
     .select("*")

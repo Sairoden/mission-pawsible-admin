@@ -1,10 +1,8 @@
 // Services
-import supabase from "./supabase";
+import { supabase } from "./supabase";
 
 // Utilities
 import { getToday, PAGE_SIZE } from "../utils";
-
-
 
 export async function getBookings({ filter, sortBy, page }) {
   try {

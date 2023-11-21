@@ -19,9 +19,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 
 // TO DO
-// 1. REGISTER/EDIT FORM
-// 2. Add more breed
-// 2.1 If Cat -> Render Breed for Cat -> DISABLE If there is NO PET TYPE
-// 2.2 If Dog -> Render Breed for Dog -> DISABLE If there is NO PET TYPE
-// 3. Add more size
+// 1. Change sortBy of Users Pages to sortBy of Supabase
 
+// Optional
+// Register Pet
+// Add Image API
+// If user select a breed, it should show the image of that Pet

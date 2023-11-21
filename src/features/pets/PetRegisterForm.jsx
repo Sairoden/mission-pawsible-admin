@@ -21,11 +21,37 @@ import { inputFormat } from "../../utils";
 // Hooks
 import { useRegisterPet } from "./useRegisterPet";
 
+// Data
+import { cats, dogs, sizes, genders, microchips, petTypes } from "../../data";
+
 function PetRegisterForm() {
-  const { register, formState, setValue, getValues, handleSubmit, reset } =
-    useForm();
+  const {
+    register,
+    formState,
+    setValue,
+    getValues,
+    handleSubmit,
+    reset,
+    watch,
+  } = useForm();
   const { errors } = formState;
   const { registerPet, isCreating } = useRegisterPet();
+
+  const petTypeOptions = petTypes.map(petType => ({
+    value: petType,
+    label: petType,
+  }));
+  const catOptions = cats.map(cat => ({ value: cat, label: cat }));
+  const dogOptions = dogs.map(dog => ({ value: dog, label: dog }));
+  const sizeOptions = sizes.map(size => ({ value: size, label: size }));
+  const genderOptions = genders.map(gender => ({
+    value: gender,
+    label: gender,
+  }));
+  const microchipOptions = microchips.map(microchip => ({
+    value: microchip,
+    label: microchip,
+  }));
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -45,6 +71,9 @@ function PetRegisterForm() {
       }
     );
   };
+
+  const selectedPetType = watch("petType");
+  const selectedBreed = watch("breed");
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -77,16 +106,15 @@ function PetRegisterForm() {
         <FormSelect
           id="petType"
           disabled={isCreating}
-          options={[
-            { value: "", label: "Select one" },
-            { value: "Dog", label: "Dog" },
-            { value: "Cat", label: "Cat" },
-          ]}
+          options={[{ value: "", label: "Select one" }, ...petTypeOptions]}
           {...register("petType", { required: "This field is required" })}
           value={getValues("petType")}
           onChange={e => {
             const selectedValue = e.target.value;
             setValue("petType", selectedValue);
+
+            const breedValue = setValue("breed", "");
+            console.log(breedValue);
           }}
         />
       </FormRow>
@@ -94,14 +122,13 @@ function PetRegisterForm() {
       <FormRow label="Breed" error={errors?.breed?.message}>
         <FormSelect
           id="breed"
-          disabled={isCreating}
+          disabled={!selectedPetType || isCreating} // Disable if "Pet Type" is not selected
           options={[
             { value: "", label: "Select one" },
-            { value: "Husky", label: "Husky" },
-            { value: "Golden Retriever", label: "Golden Retriever" },
+            ...(selectedPetType === "Dog" ? dogOptions : catOptions), // Render dog options if "Pet Type" is Dog, otherwise cat options
           ]}
           {...register("breed", { required: "This field is required" })}
-          value={getValues("breed")}
+          value={selectedBreed}
           onChange={e => {
             const selectedValue = e.target.value;
             setValue("breed", selectedValue);
@@ -129,11 +156,7 @@ function PetRegisterForm() {
         <FormSelect
           id="size"
           disabled={isCreating}
-          options={[
-            { value: "", label: "Select one" },
-            { value: "Small", label: "Small" },
-            { value: "Big", label: "Big" },
-          ]}
+          options={[{ value: "", label: "Select one" }, ...sizeOptions]}
           {...register("size", { required: "This field is required" })}
           value={getValues("size")}
           onChange={e => {
@@ -147,11 +170,7 @@ function PetRegisterForm() {
         <FormSelect
           id="gender"
           disabled={isCreating}
-          options={[
-            { value: "", label: "Select one" },
-            { value: "Male", label: "Male" },
-            { value: "Female", label: "Female" },
-          ]}
+          options={[{ value: "", label: "Select one" }, ...genderOptions]}
           {...register("gender", { required: "This field is required" })}
           value={getValues("gender")}
           onChange={e => {
@@ -165,12 +184,7 @@ function PetRegisterForm() {
         <FormSelect
           id="microchipped"
           disabled={isCreating}
-          options={[
-            { value: "", label: "Select one" },
-            { value: "Yes", label: "Yes" },
-            { value: "No", label: "No" },
-            { value: "Unknown", label: "Unknown" },
-          ]}
+          options={[{ value: "", label: "Select one" }, ...microchipOptions]}
           {...register("microchipped", { required: "This field is required" })}
           value={getValues("microchipped")}
           onChange={e => {

@@ -1,5 +1,5 @@
 // SUPABASE
-import supabase, { supabaseUrl } from "./supabase";
+import { supabaseUrl, supabase, supabaseAdmin } from "./supabase";
 
 // BOOKINGS
 import {
@@ -40,6 +40,7 @@ import { getCoordsForAddress } from "./apiLocation";
 
 export {
   supabase,
+  supabaseAdmin,
   supabaseUrl,
   getBookings,
   getBooking,

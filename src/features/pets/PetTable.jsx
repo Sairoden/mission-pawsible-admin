@@ -1,3 +1,6 @@
+// React & Libraries
+import { useSearchParams } from "react-router-dom";
+
 // Features Components
 import { PetRow } from "../index";
 
@@ -9,6 +12,8 @@ import { usePets } from "./usePets";
 
 function PetTable() {
   let { isLoading, pets, count } = usePets();
+
+  const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
 

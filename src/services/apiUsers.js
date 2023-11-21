@@ -1,5 +1,5 @@
 // Services
-import { supabase, supabaseUrl } from "./index";
+import { supabase, supabaseAdmin, supabaseUrl } from "./index";
 
 // Utilities
 import { PAGE_SIZE } from "../utils";
@@ -65,7 +65,7 @@ export const deleteUser = async id => {
   if (user[0].role === "admin")
     throw new Error("You can't delete an administrator");
 
-  const { data, error } = await supabase.from("users").delete().eq("id", id);
+  const { data, error } = await supabaseAdmin.auth.admin.deleteUser(user[0].id);
 
   if (error) throw new Error("User could not be deleted");
 

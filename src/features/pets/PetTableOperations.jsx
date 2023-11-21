@@ -1,5 +1,5 @@
 // UI Components
-import { Filter, TableOperations } from "../../ui";
+import { Filter, SortBy, TableOperations } from "../../ui";
 
 function PetTableOperations() {
   return (
@@ -11,6 +11,12 @@ function PetTableOperations() {
           { value: "Lost", label: "Lost Pets" },
           { value: "Found", label: "Found Pets" },
           { value: "Reunited", label: "Reunited Pets" },
+        ]}
+      />
+      <SortBy
+        options={[
+          { value: "Newest", label: "Sort by Newest" },
+          { value: "Oldest", label: "Sort by Oldest" },
         ]}
       />
     </TableOperations>

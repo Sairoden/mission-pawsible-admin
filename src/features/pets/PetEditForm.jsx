@@ -24,20 +24,32 @@ import { inputFormat } from "../../utils";
 // Hooks
 import { usePet } from "./usePet";
 import { useUpdatePet } from "./useUpdatePet";
-import { useEffect } from "react";
+
+// Data
+import { cats, dogs, sizes, genders, microchips, petTypes } from "../../data";
 
 function PetEditForm() {
   const { pet, isLoading } = usePet();
   const { updatePet, isEditing } = useUpdatePet();
   const navigate = useNavigate();
 
-  const {
-    register,
-    formState,
+  const petTypeOptions = petTypes.map(petType => ({
+    value: petType,
+    label: petType,
+  }));
+  const catOptions = cats.map(cat => ({ value: cat, label: cat }));
+  const dogOptions = dogs.map(dog => ({ value: dog, label: dog }));
+  const sizeOptions = sizes.map(size => ({ value: size, label: size }));
+  const genderOptions = genders.map(gender => ({
+    value: gender,
+    label: gender,
+  }));
+  const microchipOptions = microchips.map(microchip => ({
+    value: microchip,
+    label: microchip,
+  }));
 
-    handleSubmit,
-    control,
-  } = useForm();
+  const { register, formState, watch, handleSubmit, control } = useForm();
   const { errors } = formState;
 
   if (isLoading) return <Spinner />;
@@ -84,6 +96,11 @@ function PetEditForm() {
     );
   };
 
+  const selectPetType = watch("petType");
+  const selectedPetType = !selectPetType ? petType : selectPetType;
+
+  console.log(selectedPetType);
+
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow label="User ID" error={errors?.userId?.message}>
@@ -116,18 +133,14 @@ function PetEditForm() {
       <FormRow label="Pet Type" error={errors?.petType?.message}>
         <Controller
           name="petType"
+          disabled={isEditing}
           control={control}
           defaultValue={petType} // Set the defaultValue to the value you want
           rules={{ required: "Please select a pet type" }} // Add the required validation rule
           render={({ field }) => (
             <FormSelect
               id="petType"
-              disabled={isEditing}
-              options={[
-                { value: "", label: "Select one" },
-                { value: "Dog", label: "Dog" },
-                { value: "Cat", label: "Cat" },
-              ]}
+              options={[{ value: "", label: "Select one" }, ...petTypeOptions]}
               {...field}
             />
           )}
@@ -137,17 +150,16 @@ function PetEditForm() {
       <FormRow label="Breed" error={errors?.breed?.message}>
         <Controller
           name="breed"
+          disabled={isEditing}
           control={control}
           defaultValue={breed} // Set the defaultValue to the value you want
           rules={{ required: "Please select a breed" }} // Add the required validation rule
           render={({ field }) => (
             <FormSelect
               id="breed"
-              disabled={isEditing}
               options={[
                 { value: "", label: "Select one" },
-                { value: "Husky", label: "Husky" },
-                { value: "Golden Retriever", label: "Golden Retriever" },
+                ...(selectedPetType === "Dog" ? dogOptions : catOptions), // Render dog options if "Pet Type" is Dog, otherwise cat options
               ]}
               {...field}
             />
@@ -182,11 +194,7 @@ function PetEditForm() {
             <FormSelect
               id="size"
               disabled={isEditing}
-              options={[
-                { value: "", label: "Select one" },
-                { value: "Small", label: "Small" },
-                { value: "Big", label: "Big" },
-              ]}
+              options={[{ value: "", label: "Select one" }, ...sizeOptions]}
               {...field}
             />
           )}
@@ -203,11 +211,7 @@ function PetEditForm() {
             <FormSelect
               id="gender"
               disabled={isEditing}
-              options={[
-                { value: "", label: "Select one" },
-                { value: "Male", label: "Male" },
-                { value: "Female", label: "Female" },
-              ]}
+              options={[{ value: "", label: "Select one" }, ...genderOptions]}
               {...field}
             />
           )}
@@ -226,9 +230,7 @@ function PetEditForm() {
               disabled={isEditing}
               options={[
                 { value: "", label: "Select one" },
-                { value: "Yes", label: "Yes" },
-                { value: "No", label: "No" },
-                { value: "Unknown", label: "Unknown" },
+                ...microchipOptions,
               ]}
               {...field}
             />

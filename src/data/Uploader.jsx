@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // Services
-import supabase from "../services/supabase";
+import { supabase } from "../services";
 
 // UI Components
 import { Button } from "../ui";
