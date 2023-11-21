@@ -5,7 +5,9 @@ import { supabase, supabaseUrl, getCoordsForAddress } from "./index";
 import { PAGE_SIZE } from "../utils";
 
 export const getPetStats = async () => {
-  const { data, error } = await supabase.from("pets").select("*");
+  const { data, error } = await supabase
+    .from("pets")
+    .select("*, users(firstName, lastName)");
 
   if (error) throw new Error("Pets could not be loaded");
 

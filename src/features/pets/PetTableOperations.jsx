@@ -1,9 +1,25 @@
+// React & Libraries
+import { useSearchParams } from "react-router-dom";
+
 // UI Components
-import { Filter, SortBy, TableOperations } from "../../ui";
+import { Filter, Input, SortBy, TableOperations } from "../../ui";
 
 function PetTableOperations() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleChange = e => {
+    searchParams.set("name", e.target.value.toLowerCase());
+    setSearchParams(searchParams);
+  };
+
   return (
     <TableOperations>
+      <Input
+        type="text"
+        id="userId"
+        placeholder="Search for pet owner"
+        onChange={handleChange}
+      />{" "}
       <Filter
         filterField="status"
         options={[

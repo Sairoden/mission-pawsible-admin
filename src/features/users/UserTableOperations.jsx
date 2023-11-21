@@ -1,9 +1,25 @@
+// React & Libraries
+import { useSearchParams } from "react-router-dom";
+
 // UI Components
-import { TableOperations, Filter, SortBy } from "../../ui";
+import { TableOperations, SortBy, Input } from "../../ui";
 
 function UserTableOperations() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleChange = e => {
+    searchParams.set("name", e.target.value.toLowerCase());
+    setSearchParams(searchParams);
+  };
+
   return (
     <TableOperations>
+      <Input
+        type="text"
+        id="userId"
+        placeholder="Search for name"
+        onChange={handleChange}
+      />
       <SortBy
         options={[
           { value: "firstName-asc", label: "Sort by First Name (A-Z)" },

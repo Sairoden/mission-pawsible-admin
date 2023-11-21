@@ -9,9 +9,11 @@ import { Spinner, Table, Menus, Pagination, Empty } from "../../ui";
 
 // Hooks
 import { useUsers } from "./useUsers";
+import { useAllUsers } from "./useAllUsers";
 
 function UserTable() {
   const { users, isLoading, count } = useUsers();
+  const { allUsers } = useAllUsers();
 
   const [searchParams] = useSearchParams();
 
@@ -19,29 +21,19 @@ function UserTable() {
 
   if (!users.length) return <Empty resourceName="users" />;
 
-  // // SORT
-  // const sortBy = searchParams.get("sortBy") || "name-asc";
-  // const [field, direction] = sortBy.split("-");
+  // Search for Users
+  const sortBy = searchParams.get("name") || "";
+  let sortedUsers;
 
-  // let sortedUsers;
+  if (sortBy) {
+    sortedUsers = allUsers.filter(
+      user =>
+        user.firstName.toLowerCase().includes(sortBy) ||
+        user.lastName.toLowerCase().includes(sortBy)
+    );
+  }
 
-  // if (field === "name") {
-  //   if (direction === "asc")
-  //     sortedUsers = users?.sort((a, b) =>
-  //       a.firstName.localeCompare(b.firstName)
-  //     );
-  //   else
-  //     sortedUsers = users?.sort((a, b) =>
-  //       b.firstName.localeCompare(a.firstName)
-  //     );
-  // } else {
-  //   if (direction === "asc")
-  //     sortedUsers = users?.sort((a, b) => a.lastName.localeCompare(b.lastName));
-  //   else
-  //     sortedUsers = users?.sort((a, b) => b.lastName.localeCompare(a.lastName));
-  // }
-
-  // sortedUsers = sortedUsers ? sortedUsers : [];
+  sortedUsers = sortedUsers ? sortedUsers : users;
 
   return (
     <Menus>
@@ -58,12 +50,12 @@ function UserTable() {
         </Table.Header>
 
         <Table.Body
-          data={users}
+          data={sortedUsers}
           render={user => <UserRow user={user} key={user.id} />}
         />
 
         <Table.Footer>
-          <Pagination count={count} />
+          <Pagination count={!sortBy ? count : sortedUsers.length} />
         </Table.Footer>
       </Table>
     </Menus>

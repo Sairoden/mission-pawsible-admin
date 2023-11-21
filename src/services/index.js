@@ -13,7 +13,7 @@ import {
 } from "./apiBookings";
 
 // USERS
-import { getUsers, editUser, deleteUser } from "./apiUsers";
+import { getAllUsers, getUsers, editUser, deleteUser } from "./apiUsers";
 
 // AUTH
 import {
@@ -41,9 +41,12 @@ import {
 import { getCoordsForAddress } from "./apiLocation";
 
 export {
+  // SUPABASE
   supabase,
   supabaseAdmin,
   supabaseUrl,
+
+  // BOOKINGS
   getBookings,
   getBooking,
   getBookingsAfterDate,
@@ -51,22 +54,31 @@ export {
   getStaysTodayActivity,
   updateBooking,
   deleteBooking,
+
+  // AUTH
   login,
   getCurrentUser,
   logout,
   signup,
   updateCurrentUser,
+
+  // USERS
+  getAllUsers,
   getUsers,
   editUser,
   deleteUser,
   getAllPets,
   getPetRecentPost,
   getPetStats,
+
+  // PETS
   getSinglePet,
   createPet,
   updatePet,
   updatePetStatus,
   deletePet,
   deletePetImage,
+
+  // EXTRA API
   getCoordsForAddress,
 };

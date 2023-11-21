@@ -4,6 +4,14 @@ import { supabase, supabaseAdmin, supabaseUrl } from "./index";
 // Utilities
 import { PAGE_SIZE } from "../utils";
 
+export const getAllUsers = async () => {
+  const { data, error } = await supabase.from("users").select("*");
+
+  if (error) throw new Error("All Users could not be loaded");
+
+  return data;
+};
+
 export const getUsers = async ({ page, sortBy }) => {
   let query = supabase.from("users").select("*", { count: "exact" });
 

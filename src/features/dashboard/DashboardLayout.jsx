@@ -2,7 +2,7 @@
 import styled from "styled-components";
 
 // Features Components
-import { Stats, SalesChart, DurationChart, RecentPetPost } from "../index";
+import { Stats, DurationChart, RecentPetPost } from "../index";
 
 // UI Components
 import { Spinner } from "../../ui";

@@ -119,6 +119,11 @@ function PetRegisterForm() {
         />
       </FormRow>
 
+      <Img
+        src="https://i.pinimg.com/originals/8f/ef/aa/8fefaa44f99928585b65d34e05556590.png"
+        alt="pet"
+      />
+
       <FormRow label="Breed" error={errors?.breed?.message}>
         <FormSelect
           id="breed"
@@ -298,6 +303,14 @@ function PetRegisterForm() {
 
 const FormSelect = styled(Select)`
   width: 100%;
+`;
+const Img = styled.img`
+  display: block;
+  width: 5em;
+  /* aspect-ratio: 3 / 3; */
+  transform: scale(6) translateX(15px);
+  float: right;
+  margin-right: 23rem;
 `;
 
 export default PetRegisterForm;

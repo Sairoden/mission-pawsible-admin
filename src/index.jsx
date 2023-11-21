@@ -19,8 +19,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 
 // TO DO
-// 1. Change sortBy of Users Pages to sortBy of Supabase
-// 2. Add sortBy Oldest and Newest on Pets (Descending and Ascending)
 
 // Optional
 // Register Pet
