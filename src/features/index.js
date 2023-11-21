@@ -1,7 +1,6 @@
 // Authentication
 import LoginForm from "./authentication/LoginForm";
 import Logout from "./authentication/Logout";
-import SignupForm from "./authentication/SignupForm";
 import UserAvatar from "./authentication/UserAvatar";
 import UpdatePasswordForm from "./authentication/UpdatePasswordForm";
 import UpdateUserDataForm from "./authentication/UpdateUserDataForm";
@@ -21,23 +20,18 @@ import UserTable from "./users/UserTable";
 import UserRow from "./users/UserRow";
 import UserTableOperations from "./users/UserTableOperations";
 
-// Check-in-out
-import CheckoutButton from "./check-in-out/CheckoutButton";
-import Today from "./check-in-out/TodayActivity";
-import TodayItem from "./check-in-out/TodayItem";
-
 // Dashboard
 import DashboardBox from "./dashboard/DashboardBox";
 import DashboardLayout from "./dashboard/DashboardLayout";
 import DashboardFilter from "./dashboard/DashboardFilter";
 import Stat from "./dashboard/Stat";
 import Stats from "./dashboard/Stats";
-import SalesChart from "./dashboard/SalesChart";
 import DurationChart from "./dashboard/DurationChart";
+import RecentPetPostItem from "./dashboard/RecentPetPostItem";
+import RecentPetPost from "./dashboard/RecentPetPost";
 
 export {
   LoginForm,
-  SignupForm,
   UserAvatar,
   UpdatePasswordForm,
   UpdateUserDataForm,
@@ -48,8 +42,7 @@ export {
   PetTable,
   PetTableOperations,
   EditUserForm,
-  CheckoutButton,
-  Today,
+  RecentPetPostItem,
   DashboardBox,
   DashboardFilter,
   DashboardLayout,
@@ -58,9 +51,8 @@ export {
   UserRow,
   UserTableOperations,
   Stats,
-  SalesChart,
   DurationChart,
-  TodayItem,
+  RecentPetPost,
   PetRegisterForm,
   PetEditForm,
 };

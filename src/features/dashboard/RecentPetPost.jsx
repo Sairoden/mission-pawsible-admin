@@ -2,41 +2,44 @@
 import styled from "styled-components";
 
 // Features Components
-import { TodayItem } from "../index";
+import { RecentPetPostItem } from "../index";
 
 // UI Components
 import { Heading, Row, Spinner } from "../../ui";
 
 // Hooks
-import { useTodayActivity } from "./useTodayActivity";
+import { usePetRecentPost } from "./usePetRecentPost";
 
-function Today() {
-  const { activities, isLoading } = useTodayActivity();
+function RecentPetPost() {
+  const { petRecentPosts, isLoading } = usePetRecentPost();
 
   return (
-    <StyledToday>
+    <StyledRecentPetPost>
       <Row type="horizontal">
-        <Heading as="h2">Today</Heading>
+        <Heading as="h2">Recent Post</Heading>
       </Row>
 
       {!isLoading ? (
-        activities?.length > 0 ? (
-          <TodayList>
-            {activities.map(activity => (
-              <TodayItem activity={activity} key={activity.id} />
+        petRecentPosts?.length > 0 ? (
+          <RecentPetPostList>
+            {petRecentPosts.map(petRecentPost => (
+              <RecentPetPostItem
+                petRecentPost={petRecentPost}
+                key={petRecentPost.id}
+              />
             ))}
-          </TodayList>
+          </RecentPetPostList>
         ) : (
-          <NoActivity>No Activity Today...</NoActivity>
+          <NoActivity>No Recent Post...</NoActivity>
         )
       ) : (
         <Spinner />
       )}
-    </StyledToday>
+    </StyledRecentPetPost>
   );
 }
 
-const StyledToday = styled.div`
+const StyledRecentPetPost = styled.div`
   /* Box */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
@@ -50,7 +53,7 @@ const StyledToday = styled.div`
   padding-top: 2.4rem;
 `;
 
-const TodayList = styled.ul`
+const RecentPetPostList = styled.ul`
   overflow: scroll;
   overflow-x: hidden;
 
@@ -69,4 +72,4 @@ const NoActivity = styled.p`
   margin-top: 0.8rem;
 `;
 
-export default Today;
+export default RecentPetPost;

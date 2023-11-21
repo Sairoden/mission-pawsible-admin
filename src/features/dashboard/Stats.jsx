@@ -1,54 +1,40 @@
 // Styles
 import {
-  HiOutlineBanknotes,
-  HiOutlineBriefcase,
-  HiOutlineCalendarDays,
+  HiOutlineSignal,
+  HiOutlineTag,
+  HiOutlineTrophy,
   HiOutlineChartBar,
 } from "react-icons/hi2";
 
 // Features Components
 import { Stat } from "../index";
 
-function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
-  // 1.
-  const numBookings = bookings.length;
-
-  // 2.
-  const sales = bookings.reduce((acc, curr) => acc + curr.totalPrice, 0);
-
-  // 3.
-  const checkins = confirmedStays.length;
-
-  // 4.
-  const occupation =
-    confirmedStays.reduce((acc, curr) => acc + curr.numNights, 0) /
-    (numDays * cabinCount);
-
+function Stats({ numLostPets, numFoundPets, numReunitedPets, numTotalPets }) {
   return (
     <>
       <Stat
-        title="Bookings"
-        color="blue"
-        icon={<HiOutlineBriefcase />}
-        value={numBookings}
+        title="Lost Pets"
+        color="red"
+        icon={<HiOutlineTag />}
+        value={numLostPets}
       />
       <Stat
-        title="Sales"
+        title="Found Pets"
         color="green"
-        icon={<HiOutlineBanknotes />}
-        value={sales}
+        icon={<HiOutlineSignal />}
+        value={numFoundPets}
       />
       <Stat
-        title="Check ins"
-        color="indigo"
-        icon={<HiOutlineCalendarDays />}
-        value={checkins}
+        title="Reunited Pets"
+        color="blue"
+        icon={<HiOutlineTrophy />}
+        value={numReunitedPets}
       />
       <Stat
-        title="Occupancy rate"
+        title="Total Pets"
         color="yellow"
         icon={<HiOutlineChartBar />}
-        value={Math.round(occupation * 100) + "%"}
+        value={numTotalPets}
       />
     </>
   );

@@ -4,6 +4,27 @@ import { supabase, supabaseUrl, getCoordsForAddress } from "./index";
 // Utilities
 import { PAGE_SIZE } from "../utils";
 
+export const getPetStats = async () => {
+  const { data, error } = await supabase.from("pets").select("*");
+
+  if (error) throw new Error("Pets could not be loaded");
+
+  return data;
+};
+
+export const getPetRecentPost = async () => {
+  const { data, error } = await supabase
+    .from("pets")
+    .select("*, users(firstName, lastName)")
+    .in("status", ["Lost", "Found"])
+    .order("id", { ascending: false })
+    .range(0, 9);
+
+  if (error) throw new Error("Pets Recent Post could not be loaded");
+
+  return data;
+};
+
 export async function getAllPets({ filter, page, sortBy }) {
   let query = supabase
     .from("pets")

@@ -2,41 +2,36 @@
 import styled from "styled-components";
 
 // Features Components
-import { Stats, SalesChart, DurationChart, Today } from "../index";
+import { Stats, SalesChart, DurationChart, RecentPetPost } from "../index";
 
 // UI Components
 import { Spinner } from "../../ui";
 
 // Hooks
-import { useRecentBookings } from "./useRecentBookings";
-import { useRecentStays } from "./useRecentStays";
-// import { useCabins } from "../cabins/useCabins";
+import { usePetStats } from "./usePetStats";
 
 function DashboardLayout() {
-  const { isLoading: isLoadingBookings, bookings } = useRecentBookings();
-  const {
-    isLoading: isLoadingStays,
-    confirmedStays,
-    numDays,
-  } = useRecentStays();
-  // const { cabins, isLoadingCabins } = useCabins();
-  const cabins = [];
-  const isLoadingCabins = false;
+  let { petStats, isLoading } = usePetStats();
 
-  if (isLoadingBookings || isLoadingStays || isLoadingCabins)
-    return <Spinner />;
+  if (isLoading) return <Spinner />;
+
+  const numLostPets = petStats.filter(pet => pet.status === "Lost").length;
+  const numFoundPets = petStats.filter(pet => pet.status === "Found").length;
+  const numReunitedPets = petStats.filter(
+    pet => pet.status === "Reunited"
+  ).length;
 
   return (
     <StyledDashboardLayout>
       <Stats
-        bookings={bookings}
-        confirmedStays={confirmedStays}
-        numDays={numDays}
-        cabinCount={cabins.length || 0}
+        numLostPets={numLostPets}
+        numFoundPets={numFoundPets}
+        numReunitedPets={numReunitedPets}
+        numTotalPets={petStats.length}
       />
-      <Today />
-      <DurationChart confirmedStays={confirmedStays} />
-      <SalesChart bookings={bookings} numDays={numDays} />
+      <RecentPetPost />
+      <DurationChart petStats={petStats} />
+      {/* <SalesChart bookings={bookings} numDays={numDays} /> */}
     </StyledDashboardLayout>
   );
 }

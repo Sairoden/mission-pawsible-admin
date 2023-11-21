@@ -17,130 +17,78 @@ import { useDarkMode } from "../../contexts/darkMode_context";
 
 const startDataLight = [
   {
-    duration: "1 night",
+    pet: "Dog",
     value: 0,
     color: "#ef4444",
   },
   {
-    duration: "2 nights",
-    value: 0,
-    color: "#f97316",
-  },
-  {
-    duration: "3 nights",
-    value: 0,
-    color: "#eab308",
-  },
-  {
-    duration: "4-5 nights",
-    value: 0,
-    color: "#84cc16",
-  },
-  {
-    duration: "6-7 nights",
-    value: 0,
-    color: "#22c55e",
-  },
-  {
-    duration: "8-14 nights",
-    value: 0,
-    color: "#14b8a6",
-  },
-  {
-    duration: "15-21 nights",
+    pet: "Cat",
     value: 0,
     color: "#3b82f6",
-  },
-  {
-    duration: "21+ nights",
-    value: 0,
-    color: "#a855f7",
   },
 ];
 
 const startDataDark = [
   {
-    duration: "1 night",
+    pet: "Dog",
     value: 0,
     color: "#b91c1c",
   },
   {
-    duration: "2 nights",
-    value: 0,
-    color: "#c2410c",
-  },
-  {
-    duration: "3 nights",
-    value: 0,
-    color: "#a16207",
-  },
-  {
-    duration: "4-5 nights",
-    value: 0,
-    color: "#4d7c0f",
-  },
-  {
-    duration: "6-7 nights",
-    value: 0,
-    color: "#15803d",
-  },
-  {
-    duration: "8-14 nights",
-    value: 0,
-    color: "#0f766e",
-  },
-  {
-    duration: "15-21 nights",
+    pet: "Cat",
     value: 0,
     color: "#1d4ed8",
   },
-  {
-    duration: "21+ nights",
-    value: 0,
-    color: "#7e22ce",
-  },
 ];
 
-function prepareData(startData, stays) {
-  // A bit ugly code, but sometimes this is what it takes when working with real data 😅
+const lightColors = [
+  "#ef4444",
+  "#f97316",
+  "#eab308",
+  "#84cc16",
+  "#22c55e",
+  "#14b8a6",
+  "#3b82f6",
+  "#a855f7",
+];
 
-  function incArrayValue(arr, field) {
-    return arr.map(obj =>
-      obj.duration === field ? { ...obj, value: obj.value + 1 } : obj
-    );
-  }
+const darkColors = [
+  "#b91c1c",
+  "#a16207",
+  "#4d7c0f",
+  "#15803d",
+  "#0f766e",
+  "#1d4ed8",
+  "#7e22ce",
+];
 
-  const data = stays
-    .reduce((arr, cur) => {
-      const num = cur.numNights;
-      if (num === 1) return incArrayValue(arr, "1 night");
-      if (num === 2) return incArrayValue(arr, "2 nights");
-      if (num === 3) return incArrayValue(arr, "3 nights");
-      if ([4, 5].includes(num)) return incArrayValue(arr, "4-5 nights");
-      if ([6, 7].includes(num)) return incArrayValue(arr, "6-7 nights");
-      if (num >= 8 && num <= 14) return incArrayValue(arr, "8-14 nights");
-      if (num >= 15 && num <= 21) return incArrayValue(arr, "15-21 nights");
-      if (num >= 21) return incArrayValue(arr, "21+ nights");
-      return arr;
-    }, startData)
-    .filter(obj => obj.value > 0);
+function prepareData(startData, pets) {
+  const cats = pets.filter(pet => pet.petType === "Cat");
+  const dogs = pets.filter(pet => pet.petType === "Dog");
+
+  const data = startData.map(petData => {
+    if (petData.pet === "Dog") petData.value = dogs.length;
+    if (petData.pet === "Cat") petData.value = cats.length;
+
+    return petData;
+  });
 
   return data;
 }
 
-function DurationChart({ confirmedStays }) {
+function DurationChart({ petStats }) {
   const { isDarkMode } = useDarkMode();
   const startData = isDarkMode ? startDataDark : startDataLight;
-  const data = prepareData(startData, confirmedStays);
+  const data = prepareData(startData, petStats);
 
   return (
     <ChartBox>
-      <Heading as="h2">Stay duration summary</Heading>
+      <Heading as="h2">Registered Pets</Heading>
       <ResponsiveContainer width="100%" height={240}>
         <PieChart>
           <Pie
             data={data}
-            nameKey="duration"
+            nameKey="pet"
             dataKey="value"
             innerRadius={85}
             outerRadius={110}
@@ -149,11 +97,7 @@ function DurationChart({ confirmedStays }) {
             paddingAngle={3}
           >
             {data.map(entry => (
-              <Cell
-                fill={entry.color}
-                stroke={entry.color}
-                key={entry.duration}
-              />
+              <Cell fill={entry.color} stroke={entry.color} key={entry.pet} />
             ))}
           </Pie>
           <Legend

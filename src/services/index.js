@@ -27,6 +27,8 @@ import {
 // PETS
 import {
   getAllPets,
+  getPetRecentPost,
+  getPetStats,
   getSinglePet,
   createPet,
   updatePet,
@@ -58,6 +60,8 @@ export {
   editUser,
   deleteUser,
   getAllPets,
+  getPetRecentPost,
+  getPetStats,
   getSinglePet,
   createPet,
   updatePet,
