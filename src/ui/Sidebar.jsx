@@ -10,7 +10,8 @@ function Sidebar() {
     <StyledSidebar>
       <Logo />
       <MainNav />
-      <Uploader />
+      {/* FAKE DATA */}
+      {/* <Uploader /> */}
     </StyledSidebar>
   );
 }

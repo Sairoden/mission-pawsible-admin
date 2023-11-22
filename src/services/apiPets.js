@@ -207,5 +207,4 @@ export const deletePetImage = async newPetImages => {
     .eq("id", newPetImages.id);
 
   if (error) throw new Error("Pet image could not be deleted");
-  console.log(error);
 };

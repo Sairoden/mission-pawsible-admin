@@ -112,17 +112,9 @@ function PetRegisterForm() {
           onChange={e => {
             const selectedValue = e.target.value;
             setValue("petType", selectedValue);
-
-            const breedValue = setValue("breed", "");
-            console.log(breedValue);
           }}
         />
       </FormRow>
-
-      <Img
-        src="https://i.pinimg.com/originals/8f/ef/aa/8fefaa44f99928585b65d34e05556590.png"
-        alt="pet"
-      />
 
       <FormRow label="Breed" error={errors?.breed?.message}>
         <FormSelect

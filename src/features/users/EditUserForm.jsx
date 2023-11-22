@@ -40,7 +40,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
       );
   };
 
-  const onError = err => console.log(err);
+  const onError = err => console.error(err);
 
   return (
     <Form

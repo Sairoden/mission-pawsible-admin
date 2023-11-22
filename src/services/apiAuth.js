@@ -107,6 +107,9 @@ export const updateCurrentUser = async ({
   }
 
   const { data, error } = await supabase.auth.updateUser(updateData);
+
+  if (updateData.password) return data;
+
   const { error: userError } = await supabase
     .from("users")
     .update(updateData.data)

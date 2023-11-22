@@ -99,8 +99,6 @@ function PetEditForm() {
   const selectPetType = watch("petType");
   const selectedPetType = !selectPetType ? petType : selectPetType;
 
-  console.log(selectedPetType);
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <FormRow label="User ID" error={errors?.userId?.message}>

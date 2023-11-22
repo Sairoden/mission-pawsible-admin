@@ -37,7 +37,7 @@ function PetTable() {
 
   return (
     <Menus>
-      <Table columns="1fr 2.5fr 2fr 2fr 2.5fr 3fr 2fr 3.2rem">
+      <Table columns="1fr 3.3fr 2fr 2fr 2.5fr 3fr 2fr 3.2rem">
         <Table.Header>
           <div>Pet ID</div>
           <div>User Name</div>
