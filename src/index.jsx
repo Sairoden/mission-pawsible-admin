@@ -17,10 +17,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </ErrorBoundary>
   </React.StrictMode>
 );
-
-// TO DO
-
-// Optional
-// Register Pet
-// Add Image API
-// If user select a breed, it should show the image of that Pet
