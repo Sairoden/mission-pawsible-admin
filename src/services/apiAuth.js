@@ -29,8 +29,6 @@ export const signup = async ({
 };
 
 export const login = async ({ email, password }) => {
-  supabase.auth.deleteUser;
-
   let { data: user, error: userError } = await supabase
     .from("users")
     .select("*")
