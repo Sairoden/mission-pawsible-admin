@@ -1,17 +1,6 @@
 // SUPABASE
 import { supabaseUrl, supabase, supabaseAdmin } from "./supabase";
 
-// BOOKINGS
-import {
-  getBookings,
-  getBooking,
-  getBookingsAfterDate,
-  getStaysAfterDate,
-  getStaysTodayActivity,
-  updateBooking,
-  deleteBooking,
-} from "./apiBookings";
-
 // USERS
 import { getAllUsers, getUsers, editUser, deleteUser } from "./apiUsers";
 
@@ -27,7 +16,7 @@ import {
 // PETS
 import {
   getAllPets,
-  getPetRecentPost,
+  getPetsVerfication,
   getPetStats,
   getSinglePet,
   createPet,
@@ -35,6 +24,7 @@ import {
   updatePetStatus,
   deletePet,
   deletePetImage,
+  verifyPet,
 } from "./apiPets";
 
 // GEOCODING
@@ -45,15 +35,6 @@ export {
   supabase,
   supabaseAdmin,
   supabaseUrl,
-
-  // BOOKINGS
-  getBookings,
-  getBooking,
-  getBookingsAfterDate,
-  getStaysAfterDate,
-  getStaysTodayActivity,
-  updateBooking,
-  deleteBooking,
 
   // AUTH
   login,
@@ -68,7 +49,7 @@ export {
   editUser,
   deleteUser,
   getAllPets,
-  getPetRecentPost,
+  getPetsVerfication,
   getPetStats,
 
   // PETS
@@ -78,6 +59,7 @@ export {
   updatePetStatus,
   deletePet,
   deletePetImage,
+  verifyPet,
 
   // EXTRA API
   getCoordsForAddress,

@@ -11,16 +11,21 @@ function ConfirmDelete({
   handleCloseModal,
   resourceStatus = "delete",
 }) {
+  let resourceStatusTag;
+
+  if (resourceStatus === "reunite") resourceStatusTag = "Reunite";
+  if (resourceStatus === "delete") resourceStatusTag = "Delete";
+  if (resourceStatus === "verify") resourceStatusTag = "Verify";
+
   return (
     <StyledConfirmDelete>
       <Heading as="h3">
-        {resourceStatus === "reunite" ? "Reunite" : "Delete"} {resourceName}
+        {resourceStatusTag} {resourceName}
       </Heading>
 
       <p>
-        Are you sure you want to{" "}
-        {resourceStatus === "reunite" ? "reunite" : "delete"} this{" "}
-        {resourceName} permanently?
+        Are you sure you want to {resourceStatusTag} this {resourceName}{" "}
+        permanently? Please note that this is irreversible.
       </p>
 
       <div>
@@ -32,11 +37,15 @@ function ConfirmDelete({
           Cancel
         </Button>
         <Button
-          variation={resourceStatus === "reunite" ? "primary" : "danger"}
+          variation={
+            resourceStatus === "reunite" || resourceStatus === "verify"
+              ? "primary"
+              : "danger"
+          }
           disabled={disabled}
           onClick={handleConfirm}
         >
-          {resourceStatus === "reunite" ? "Reunite" : "Delete"}
+          {resourceStatusTag}
         </Button>
       </div>
     </StyledConfirmDelete>

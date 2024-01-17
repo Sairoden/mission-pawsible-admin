@@ -26,10 +26,8 @@ function PetTable() {
   let sortedPets;
 
   if (sortBy) {
-    sortedPets = petStats.filter(
-      pet =>
-        pet.users.firstName.toLowerCase().includes(sortBy) ||
-        pet.users.lastName.toLowerCase().includes(sortBy)
+    sortedPets = petStats.filter(pet =>
+      pet.petName.toLowerCase().includes(sortBy)
     );
   }
 

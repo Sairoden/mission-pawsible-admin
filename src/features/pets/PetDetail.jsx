@@ -26,11 +26,13 @@ import { useMoveBack } from "../../hooks";
 import { usePet } from "./usePet";
 import { useDeletePet } from "./useDeletePet";
 import { useUpdatePetStatus } from "./useUpdatePetStatus";
+import { useVerifyPet } from "./useVerifyPet";
 
 function PetDetail() {
   const { pet, isLoading } = usePet();
   const { isDeleting, deletePet } = useDeletePet();
   const { updatePetStatus, isUpdating } = useUpdatePetStatus();
+  const { verifyPet, isUpdating: isUpdating2 } = useVerifyPet();
 
   const moveBack = useMoveBack();
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ function PetDetail() {
   if (isLoading) return <Spinner />;
   if (!pet) return <Empty resourceName="pet" />;
 
-  const { status, id: petId } = pet;
+  const { isVerified, status, id: petId } = pet;
 
   const statusToTagName = {
     Lost: "red",
@@ -60,6 +62,27 @@ function PetDetail() {
       <PetDataBox pet={pet} />
 
       <ButtonGroup>
+        {!isVerified && (
+          <Modal>
+            <Modal.Open opens="verify">
+              <Button>Verify Pet</Button>
+            </Modal.Open>
+
+            <Modal.Window name="verify">
+              <ConfirmDelete
+                resourceName="pet"
+                resourceStatus="verify"
+                disabled={isUpdating2}
+                handleConfirm={() =>
+                  verifyPet(petId, {
+                    onSuccess: () => navigate(-1),
+                  })
+                }
+              />
+            </Modal.Window>
+          </Modal>
+        )}
+
         {status !== "Reunited" && (
           <Modal>
             <Modal.Open opens="reunite">

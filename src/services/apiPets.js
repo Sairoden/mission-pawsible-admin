@@ -14,15 +14,15 @@ export const getPetStats = async () => {
   return data;
 };
 
-export const getPetRecentPost = async () => {
+export const getPetsVerfication = async () => {
   const { data, error } = await supabase
     .from("pets")
     .select("*, users(firstName, lastName)")
+    .eq("isVerified", false)
     .in("status", ["Lost", "Found"])
-    .order("id", { ascending: false })
-    .range(0, 9);
+    .order("id", { ascending: false });
 
-  if (error) throw new Error("Pets Recent Post could not be loaded");
+  if (error) throw new Error("Unverified could not be loaded");
 
   return data;
 };
@@ -184,6 +184,18 @@ export const updatePetStatus = async id => {
   const { data, error } = await supabase
     .from("pets")
     .update({ status: "Reunited" })
+    .eq("id", id)
+    .select();
+
+  if (error) throw new Error("Pet status could not be updated");
+
+  return data;
+};
+
+export const verifyPet = async id => {
+  const { data, error } = await supabase
+    .from("pets")
+    .update({ isVerified: true })
     .eq("id", id)
     .select();
 

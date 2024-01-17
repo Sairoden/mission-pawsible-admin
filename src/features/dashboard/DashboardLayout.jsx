@@ -31,7 +31,6 @@ function DashboardLayout() {
       />
       <RecentPetPost />
       <DurationChart petStats={petStats} />
-      {/* <SalesChart bookings={bookings} numDays={numDays} /> */}
     </StyledDashboardLayout>
   );
 }

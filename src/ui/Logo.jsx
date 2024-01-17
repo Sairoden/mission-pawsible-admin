@@ -1,12 +1,11 @@
 // Styles
 import styled from "styled-components";
+import logo from "../assets/logo-mission.png";
 
 function Logo() {
-  const src = "/logo-mission.png";
-
   return (
     <StyledLogo>
-      <Img src={src} alt="Logo" />
+      <Img src={logo} alt="Logo" />
     </StyledLogo>
   );
 }

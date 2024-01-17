@@ -17,7 +17,7 @@ function PetTableOperations() {
       <Input
         type="text"
         id="userId"
-        placeholder="Search for pet owner"
+        placeholder="Search for pet name"
         onChange={handleChange}
       />{" "}
       <Filter

@@ -8,21 +8,23 @@ import { RecentPetPostItem } from "../index";
 import { Heading, Row, Spinner } from "../../ui";
 
 // Hooks
-import { usePetRecentPost } from "./usePetRecentPost";
+import { usePetsVerfication } from "./usePetsVerfication";
 
 function RecentPetPost() {
-  const { petRecentPosts, isLoading } = usePetRecentPost();
+  const { petsVerification, isLoading } = usePetsVerfication();
+
+  console.log(petsVerification);
 
   return (
     <StyledRecentPetPost>
       <Row type="horizontal">
-        <Heading as="h2">Recent Post</Heading>
+        <Heading as="h2">Non-Verified Pets</Heading>
       </Row>
 
       {!isLoading ? (
-        petRecentPosts?.length > 0 ? (
+        petsVerification?.length > 0 ? (
           <RecentPetPostList>
-            {petRecentPosts.map(petRecentPost => (
+            {petsVerification.map(petRecentPost => (
               <RecentPetPostItem
                 petRecentPost={petRecentPost}
                 key={petRecentPost.id}
