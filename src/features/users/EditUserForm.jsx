@@ -52,7 +52,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
           type="text"
           id="firstName"
           disabled={isWorking}
-          {...register("firstName")}
+          {...register("firstName", { required: true })}
         />
       </FormRow>
 
@@ -61,7 +61,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
           type="text"
           id="lastName"
           disabled={isWorking}
-          {...register("lastName")}
+          {...register("lastName", { required: true })}
         />
       </FormRow>
 
