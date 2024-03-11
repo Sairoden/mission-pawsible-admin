@@ -38,10 +38,9 @@ export const getUsers = async ({ page, sortBy }) => {
 
 export const editUser = async (newUser, id) => {
   const hasAvatarPath = newUser.avatar?.startsWith?.(supabaseUrl);
-  const avatarName = `${Math.random()}-${newUser.avatar.name}`.replaceAll(
-    "/",
-    ""
-  );
+  const avatarName =
+    newUser.avatar &&
+    `${Math.random()}-${newUser.avatar.name}`.replaceAll("/", "");
 
   const avatarPath = hasAvatarPath
     ? newUser.avatar
