@@ -42,6 +42,7 @@ export const editUser = async (newUser, id) => {
     "/",
     ""
   );
+
   const avatarPath = hasAvatarPath
     ? newUser.avatar
     : `${supabaseUrl}/storage/v1/object/public/avatars/${avatarName}`;
@@ -50,7 +51,16 @@ export const editUser = async (newUser, id) => {
   let query = supabase.from("users");
 
   // 2.
-  if (id) query = query.update({ ...newUser, avatar: avatarPath }).eq("id", id);
+  if (id) {
+    if (newUser.avatar) {
+      query = query.update({ ...newUser, avatar: avatarPath }).eq("id", id);
+    } else {
+      const { address, contactNumber, firstName, lastName } = newUser;
+      query = query
+        .update({ address, contactNumber, firstName, lastName })
+        .eq("id", id);
+    }
+  }
 
   const { data, error } = await query.select().single();
 

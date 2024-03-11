@@ -12,6 +12,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
   const isWorking = isEditing;
 
   const { id: editId, ...editValues } = userToEdit;
+  editValues.avatar = "";
 
   const { register, handleSubmit, reset, formState } = useForm({
     defaultValues: editId ? editValues : {},
@@ -52,7 +53,9 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
           type="text"
           id="firstName"
           disabled={isWorking}
-          {...register("firstName", { required: true })}
+          {...register("firstName", {
+            required: "This field is required",
+          })}
         />
       </FormRow>
 
@@ -61,7 +64,9 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
           type="text"
           id="lastName"
           disabled={isWorking}
-          {...register("lastName", { required: true })}
+          {...register("lastName", {
+            required: "This field is required",
+          })}
         />
       </FormRow>
 
@@ -85,13 +90,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
       </FormRow>
 
       <FormRow label="Avatar">
-        <FileInput
-          accept="image/*"
-          id="avatar"
-          {...register("avatar", {
-            required: editId ? false : "This field is required",
-          })}
-        />
+        <FileInput accept="image/*" id="avatar" {...register("avatar")} />
       </FormRow>
 
       <FormRow>
