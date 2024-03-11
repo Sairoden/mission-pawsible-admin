@@ -66,18 +66,14 @@ export const editUser = async (newUser, id) => {
   if (error) throw new Error("Users could not be edited");
 
   // 2. Upload avatar
-  if (hasAvatarPath) return data;
+  if (!newUser.avatar) return data;
 
   const { error: storageError } = await supabase.storage
     .from("avatars")
     .upload(avatarName, newUser.avatar);
 
-  // 3. Delete the cabin IF there was an error uploading avatar
   if (storageError) {
-    await supabase.from("users").delete().eq("id", data.id);
-    throw new Error(
-      "User avatar could not be uploaded and the user was not edited"
-    );
+    throw new Error("User avatar could not be uploaded");
   }
 
   return data;
