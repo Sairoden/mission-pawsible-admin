@@ -52,9 +52,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
           type="text"
           id="firstName"
           disabled={isWorking}
-          {...register("firstName", {
-            required: "This field is required",
-          })}
+          {...register("firstName")}
         />
       </FormRow>
 
@@ -63,9 +61,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
           type="text"
           id="lastName"
           disabled={isWorking}
-          {...register("lastName", {
-            required: "This field is required",
-          })}
+          {...register("lastName")}
         />
       </FormRow>
 
@@ -74,9 +70,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
           type="text"
           id="contactNumber"
           disabled={isWorking}
-          {...register("contactNumber", {
-            required: "This field is required",
-          })}
+          {...register("contactNumber")}
         />
       </FormRow>
 
@@ -86,9 +80,7 @@ function EditUserForm({ userToEdit = {}, handleCloseModal }) {
           id="address"
           defaultValue=""
           disabled={isWorking}
-          {...register("address", {
-            required: "This field is required",
-          })}
+          {...register("address")}
         />
       </FormRow>
 
