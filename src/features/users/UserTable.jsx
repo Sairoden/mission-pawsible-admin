@@ -28,8 +28,8 @@ function UserTable() {
   if (sortBy) {
     sortedUsers = allUsers.filter(
       user =>
-        user.firstName.toLowerCase().includes(sortBy) ||
-        user.lastName.toLowerCase().includes(sortBy)
+        (user?.firstName && user.firstName.toLowerCase().includes(sortBy)) ||
+        (user?.lastName && user.lastName.toLowerCase().includes(sortBy))
     );
   }
 
